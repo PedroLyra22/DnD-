@@ -1,30 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sua Ficha - RPG</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>Sua Ficha D&D 5e</header>
-    <h3>Crie sua Ficha:</h3>
-    <form>
+    <section>
+      <h3>Crie sua Ficha:</h3>
 
+      <form id="formFicha">
         <ol>
-            <li>
-                <label for="race">Raça:</label>
-                <input type="text" name="Raça" id="race" placeholder="Selecione sua Raça">
-            </li>
-            <li>
-                <label>Classe:
-                    <input type="text" name="Classe" id="class" placeholder="Selecione sua Classe">
-                </label>
-            </li>
-        </ol>
-        <button type="submit">Salvar Ficha</button>
-    </form>
-        
-</body>
+          <li>
+            <label>Raça:
 
-<script src="script.js"></script>
+                <input
+                  type="text"
+                  name="Raça"
+                  id="race"
+                  placeholder="Selecione sua Raça"
+                />
+            </label>
+          </li>
+          <li>
+            <label>Classe:
+              <select required id="class">
+                <option value="" disabled selected>Selecione sua Classe</option>
+                <option>Artífice</option>
+                <option>Bárbaro</option>
+              </select>
+            </label>
+          </li>
+        </ol>
+        <button>Salvar Ficha</button>
+      </form>
+    </section>
+    <section>
+      <p id="ficha">Sua ficha aqui!</p>
+    </section>
+  </body>
+
+  <script src="script.js"></script>
 </html>

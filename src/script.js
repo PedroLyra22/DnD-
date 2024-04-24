@@ -1,11 +1,16 @@
-var form = document.getElementsByTagName("form")
+var form = document.getElementById("formFicha")
+var p = document.getElementById("ficha")
 
-function criarFicha() {
+function criarFicha(event) {
+    p.textContent = `Raça: ${event.target[0].value}`;
 
+    const idxClasse = event.target[1].selectedIndex;
+    const classe = `Classe: ${event.target[1][idxClasse].value}`;
+    p.textContent = p.textContent.concat("\n", classe);
+
+    event.preventDefault();
 }
 
-form.submit = criarFicha
+form.addEventListener("submit", criarFicha);
 
-//alert("1")
-
-//console.log("1" === 1)
+console.log(form)
