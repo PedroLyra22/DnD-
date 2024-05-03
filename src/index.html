@@ -9,12 +9,22 @@
     <header>Sua Ficha D&D 5e</header>
     <section>
       <h3>Crie sua Ficha:</h3>
-
+      
       <form id="formFicha">
         <ol>
           <li>
+            <label>Nome do Personagem:
+              <input id="chaName" required type="text">
+            </label>
+          </li>
+          <li>
+            <label>Nome do Jogador:
+              <input id="playName" required type="text">
+            </label>
+          </li>
+          <li>
             <label>Linhagem:
-              <select required id="lineage">
+              <select required id="race">
                 <option value="" disabled selected>Selecione sua Linhagem</option>
                 <option value="" disabled>-------Comum-------</option>
                 <option>Anão(Colina)</option>
@@ -87,12 +97,39 @@
               </select>
             </label>
           </li>
+          <li>
+            <label>Antecedente:
+              <select required id="background">
+                <option value="" disabled selected>Selecione seu Antecedente</option>
+                <option>Nobre</option>
+                <option>Criminoso</option>
+                <option>Mercenário</option>
+              </select>
+            </label>
+          </li>
+          <li>
+            <label>Alinhamento:
+              <select id="allingment">
+                <option value="" disabled selected>Selecione seu Alinhamento:</option>
+                <option>Leal e Bom</option>
+                <option>Neutro</option>
+                <option>Caótico e Mal</option>
+                <!--option></option>
+                <option></option-->
+              </select>
+            </label>
+          </li>
+          <li>
+            <label>Pontos de Experiência:
+              <input id="exp" type="number" value="0" min="0">
+            </label>
+          </li>
         </ol>
         <button>Salvar Ficha</button>
       </form>
     </section>
     <section>
-      <p id="ficha">Sua ficha aqui!</p>
+      <div id="ficha">Sua ficha aqui!</div>
     </section>
   </body>
 
