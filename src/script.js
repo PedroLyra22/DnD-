@@ -49,22 +49,19 @@ function criarFicha(event) {
             const xp = Number(campo.value);
 
             Experiencia.textContent = `Experiencia: ${campo.value}`;
-            const oldXp = Math.floor((Number(campo.value) + 100) / 100);
-            const newXP = Math.floor((3.7825*Math.pow(xp,4)) - (134.59*Math.pow(xp,3)) + (2572.6*Math.pow(xp,2)) - (10699*xp + 10703));
-            Nivel.textContent = `Nível: ${newXP}`;
+            Nivel.textContent = `Nível: ${calculaNivel(xp)}`;
 
             divFicha.appendChild(Experiencia);
             divFicha.appendChild(Nivel);
         }
-        
-
-
-
     }
 
 
     //console.log(campos)
 }
+
+//TO DO: criar event listener para toda vez que alterarmos um
+//atributo, refletir no custo total. (mdn listeneronChange)
 
 form.addEventListener("submit", criarFicha);
 
