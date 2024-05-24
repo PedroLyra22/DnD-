@@ -1,5 +1,19 @@
 var form = document.getElementById("formFicha")
 var divFicha = document.getElementById("ficha")
+var custo = document.getElementById("custo")
+
+function imprimeCustoAtributo(){
+    const VatrF = document.getElementById("força").value
+    const VatrD = document.getElementById("destreza").value
+    const VatrCo = document.getElementById("constituição").value
+    const VatrI = document.getElementById("inteligência").value
+    const VatrS = document.getElementById("sabedoria").value
+    const VatrCa = document.getElementById("carisma").value
+    custo.textContent = `${somaCustosAtribustos(VatrF, VatrD, VatrCo, 
+        VatrI, VatrS, VatrCa)} / 27`
+}
+
+imprimeCustoAtributo();
 
 function criarFicha(event) {
     event.preventDefault();
@@ -63,5 +77,13 @@ function criarFicha(event) {
 //TO DO: criar event listener para toda vez que alterarmos um
 //atributo, refletir no custo total. (mdn listeneronChange)
 
+const atributos = document.getElementsByClassName("atr");
+console.log(atributos.length)
+for(let i=0; i < atributos.length; i++){
+    console.log(atributos[i])
+    atributos[i].addEventListener("onchange", imprimeCustoAtributo);
+}
+console.log(atributos);
 form.addEventListener("submit", criarFicha);
+
 
