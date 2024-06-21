@@ -68,22 +68,37 @@ function criarFicha(event) {
             divFicha.appendChild(Experiencia);
             divFicha.appendChild(Nivel);
         }
+
+        if(campo.id === "força"){
+            const CaixaFor = document.createElement('div');
+            const QtdFor = document.createElement('p');
+            const Modificador = document.createElement('h2');
+
+            CaixaFor.id = "caixaFor";
+            QtdFor.id = "qtdFor";
+            Modificador.id = "modFor";
+
+            QtdFor.textContent = campo.valueAsNumber;
+            Modificador.textContent = calculaModificador(campo.valueAsNumber);
+
+            CaixaFor.appendChild(QtdFor);
+            CaixaFor.appendChild(Modificador);
+            divFicha.appendChild(CaixaFor);
+
+            //TO DO: Terminar de imprimir os atributos do formulario
+
+        }
     }
 
 
-    //console.log(campos)
+    console.log(campos)
 }
 
-//TO DO: criar event listener para toda vez que alterarmos um
-//atributo, refletir no custo total. (mdn listeneronChange)
 
 const atributos = document.getElementsByClassName("atr");
-console.log(atributos.length)
 for(let i=0; i < atributos.length; i++){
-    console.log(atributos[i])
-    atributos[i].addEventListener("onchange", imprimeCustoAtributo);
+    atributos[i].addEventListener("input", imprimeCustoAtributo);
 }
-console.log(atributos);
 form.addEventListener("submit", criarFicha);
 
 

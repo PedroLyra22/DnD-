@@ -71,9 +71,12 @@ function calculaCustoAtributos(atr){
 function somaCustosAtribustos(Afor, Adex, Acon, Aint, Asab, Acar){
     return calculaCustoAtributos(Number(Afor))+
            calculaCustoAtributos(Number(Adex))+
-           calculaCustoAtributos(Number(Adex))+
            calculaCustoAtributos(Number(Acon))+
            calculaCustoAtributos(Number(Aint))+
            calculaCustoAtributos(Number(Asab))+
            calculaCustoAtributos(Number(Acar))
+}
+
+function calculaModificador(atr){    
+    return Math.floor((atr - 10)/2);
 }
