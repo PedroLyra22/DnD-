@@ -73,20 +73,126 @@ function criarFicha(event) {
             const CaixaFor = document.createElement('div');
             const QtdFor = document.createElement('p');
             const Modificador = document.createElement('h2');
+            const Titulo = document.createElement('h4')
 
             CaixaFor.id = "caixaFor";
             QtdFor.id = "qtdFor";
             Modificador.id = "modFor";
+            Titulo.id = "titFor"
 
             QtdFor.textContent = campo.valueAsNumber;
             Modificador.textContent = calculaModificador(campo.valueAsNumber);
+            Titulo.textContent = "FOR";
 
             CaixaFor.appendChild(QtdFor);
             CaixaFor.appendChild(Modificador);
+            CaixaFor.appendChild(Titulo);
             divFicha.appendChild(CaixaFor);
+        }
 
-            //TO DO: Terminar de imprimir os atributos do formulario
+        if(campo.id === "destreza"){
+            const CaixaDex = document.createElement('div');
+            const QtdDex = document.createElement('p');
+            const Modificador = document.createElement('h2');
+            const Titulo = document.createElement('h4')
 
+            CaixaDex.id = "caixaDex";
+            QtdDex.id = "qtdDex";
+            Modificador.id = "modDex";
+            Titulo.id = "titDex"
+
+            QtdDex.textContent = campo.valueAsNumber;
+            Modificador.textContent = calculaModificador(campo.valueAsNumber);
+            Titulo.textContent = "DEX";
+
+            CaixaDex.appendChild(QtdDex);
+            CaixaDex.appendChild(Modificador);
+            CaixaDex.appendChild(Titulo);
+            divFicha.appendChild(CaixaDex);
+        }
+
+        if(campo.id === "constituição"){
+            const CaixaCon = document.createElement('div');
+            const QtdCon = document.createElement('p');
+            const Modificador = document.createElement('h2');
+            const Titulo = document.createElement('h4')
+
+            CaixaCon.id = "caixaCon";
+            QtdCon.id = "qtdCon";
+            Modificador.id = "modCon";
+            Titulo.id = "titCon"
+
+            QtdCon.textContent = campo.valueAsNumber;
+            Modificador.textContent = calculaModificador(campo.valueAsNumber);
+            Titulo.textContent = "CON";
+
+            CaixaCon.appendChild(QtdCon);
+            CaixaCon.appendChild(Modificador);
+            CaixaCon.appendChild(Titulo);
+            divFicha.appendChild(CaixaCon);
+        }
+
+        if(campo.id === "inteligência"){
+            const CaixaInt = document.createElement('div');
+            const QtdInt = document.createElement('p');
+            const Modificador = document.createElement('h2');
+            const Titulo = document.createElement('h4')
+
+            CaixaInt.id = "caixaInt";
+            QtdInt.id = "qtdInt";
+            Modificador.id = "modInt";
+            Titulo.id = "titInt"
+
+            QtdInt.textContent = campo.valueAsNumber;
+            Modificador.textContent = calculaModificador(campo.valueAsNumber);
+            Titulo.textContent = "INT";
+
+            CaixaInt.appendChild(QtdInt);
+            CaixaInt.appendChild(Modificador);
+            CaixaInt.appendChild(Titulo);
+            divFicha.appendChild(CaixaInt);
+        }
+
+        if(campo.id === "sabedoria"){
+            const CaixaSab = document.createElement('div');
+            const QtdSab = document.createElement('p');
+            const Modificador = document.createElement('h2');
+            const Titulo = document.createElement('h4')
+
+            CaixaSab.id = "caixaSab";
+            QtdSab.id = "qtdSab";
+            Modificador.id = "modSab";
+            Titulo.id = "titSab"
+
+            QtdSab.textContent = campo.valueAsNumber;
+            Modificador.textContent = calculaModificador(campo.valueAsNumber);
+            Titulo.textContent = "SAB";
+
+            CaixaSab.appendChild(QtdSab);
+            CaixaSab.appendChild(Modificador);
+            CaixaSab.appendChild(Titulo);
+            divFicha.appendChild(CaixaSab);
+        }
+
+        if(campo.id === "carisma"){
+            const CaixaCar = document.createElement('div');
+            const QtdCar = document.createElement('p');
+            const Modificador = document.createElement('h2');
+            const Titulo = document.createElement('h4')
+
+            CaixaCar.id = "caixaCar";
+            QtdCar.id = "qtdCar";
+            Modificador.id = "modCar";
+            Titulo.id = "titCar"
+
+            QtdCar.textContent = campo.valueAsNumber;
+            Modificador.textContent = calculaModificador(campo.valueAsNumber);
+            Titulo.textContent = "CHA";
+
+            CaixaCar.appendChild(QtdCar);
+            CaixaCar.appendChild(Modificador);
+            CaixaCar.appendChild(Titulo);
+            divFicha.appendChild(CaixaCar);
         }
     }
 
