@@ -107,7 +107,18 @@ function criarFicha(event) {
   CriaCaixaAtr("inteligência")
   CriaCaixaAtr("sabedoria")
   CriaCaixaAtr("carisma")
+
+
+//---------------------------BÔNUS DE PROFICIÊNCIA---------------------------------------------------------
+  const bonusProficiencia = document.createElement("h3")
+  bonusProficiencia.id = "bp"
+  bonusProficiencia.textContent = `Bônus de Proficiência: ${calculaBonusProficiencia(personagem.nivel)}`;
+  divFicha.appendChild(bonusProficiencia);
+  
 }
+
+//----------------------------PERÍCIAS--------------------------
+
 
 const atributos = document.getElementsByClassName("atr");
 for (let i = 0; i < atributos.length; i++) {
