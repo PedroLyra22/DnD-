@@ -1,6 +1,6 @@
 class Personagem {
     
-    constructor(objPersonagem){
+    constructor(objPersonagem, objAtributo){
         this.nome = objPersonagem.chaName;
         this.jogador = objPersonagem.playName;
         this.raça = objPersonagem.race;
@@ -9,6 +9,31 @@ class Personagem {
         this.alinhamento = objPersonagem.allingment;
         this.nivel = objPersonagem.nvl;
 
+        this.atributos = {};
+        this.atributos.força = {
+            valor: objAtributo.força,
+            modificador: calculaModificador(objAtributo.força)  
+        }
+        this.atributos.destreza = {
+            valor: objAtributo.destreza,
+            modificador: calculaModificador(objAtributo.destreza)  
+        }
+        this.atributos.constituição = {
+            valor: objAtributo.constituição,
+            modificador: calculaModificador(objAtributo.constituição)  
+        }
+        this.atributos.inteligência = {
+            valor: objAtributo.inteligência,
+            modificador: calculaModificador(objAtributo.inteligência)  
+        }
+        this.atributos.sabedoria = {
+            valor: objAtributo.sabedoria,
+            modificador: calculaModificador(objAtributo.sabedoria)  
+        }
+        this.atributos.carisma = {
+            valor: objAtributo.carisma,
+            modificador: calculaModificador(objAtributo.carisma)  
+        }
     }
 
     imprime(){

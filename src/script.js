@@ -36,13 +36,19 @@ function criarFicha(event) {
   event.preventDefault();
   const campos = event.target;
   const camposPersonagem = document.getElementsByClassName("campoPersonagem");
+  const camposAtributo = document.getElementsByClassName("atr");
   const objPersonagem = {};
+  const objAtributo = {};
 
   for (let i = 0; i < camposPersonagem.length; i++) {
     objPersonagem[camposPersonagem[i].id] = camposPersonagem[i].value;
   }
 
-  const personagem = new Personagem(objPersonagem);
+  for (let i = 0; i < camposAtributo.length; i++) {
+    objAtributo[camposAtributo[i].id] = camposAtributo[i].value;
+  }
+
+  const personagem = new Personagem(objPersonagem, objAtributo);
 
   const NomePersonagem = document.createElement("h1");
   NomePersonagem.textContent = `Nome do Personagem: ${personagem.nome}`;
@@ -73,133 +79,120 @@ function criarFicha(event) {
   divFicha.appendChild(Nivel);
 
   //---------------------------ATRIBUTOS-------------------------------------
-  for (campo of campos) {
-    if (campo.id === "força") {
-      const CaixaFor = document.createElement("div");
-      const QtdFor = document.createElement("p");
-      const Modificador = document.createElement("h2");
-      const Titulo = document.createElement("h4");
 
-      CaixaFor.id = "caixaFor";
-      QtdFor.id = "qtdFor";
-      Modificador.id = "modFor";
-      Titulo.id = "titFor";
+  const CaixaFor = document.createElement("div");
+  const QtdFor = document.createElement("p");
+  const ModificadorF = document.createElement("h2");
+  const TituloF = document.createElement("h4");
 
-      QtdFor.textContent = campo.valueAsNumber;
-      Modificador.textContent = calculaModificador(campo.valueAsNumber);
-      Titulo.textContent = "FOR";
+  CaixaFor.id = "caixaFor";
+  QtdFor.id = "qtdFor";
+  ModificadorF.id = "modFor";
+  TituloF.id = "titFor";
 
-      CaixaFor.appendChild(QtdFor);
-      CaixaFor.appendChild(Modificador);
-      CaixaFor.appendChild(Titulo);
-      divFicha.appendChild(CaixaFor);
-    }
+  QtdFor.textContent = personagem.atributos.força.valor;
+  ModificadorF.textContent = personagem.atributos.força.modificador;
+  TituloF.textContent = "FOR";
 
-    if (campo.id === "destreza") {
-      const CaixaDex = document.createElement("div");
-      const QtdDex = document.createElement("p");
-      const Modificador = document.createElement("h2");
-      const Titulo = document.createElement("h4");
+  CaixaFor.appendChild(QtdFor);
+  CaixaFor.appendChild(ModificadorF);
+  CaixaFor.appendChild(TituloF);
+  divFicha.appendChild(CaixaFor);
 
-      CaixaDex.id = "caixaDex";
-      QtdDex.id = "qtdDex";
-      Modificador.id = "modDex";
-      Titulo.id = "titDex";
+  const CaixaDex = document.createElement("div");
+  const QtdDex = document.createElement("p");
+  const ModificadorD = document.createElement("h2");
+  const TituloD = document.createElement("h4");
 
-      QtdDex.textContent = campo.valueAsNumber;
-      Modificador.textContent = calculaModificador(campo.valueAsNumber);
-      Titulo.textContent = "DEX";
+  CaixaDex.id = "caixaDex";
+  QtdDex.id = "qtdDex";
+  ModificadorD.id = "modDex";
+  TituloD.id = "titDex";
 
-      CaixaDex.appendChild(QtdDex);
-      CaixaDex.appendChild(Modificador);
-      CaixaDex.appendChild(Titulo);
-      divFicha.appendChild(CaixaDex);
-    }
+  QtdDex.textContent = personagem.atributos.destreza.valor;
+  ModificadorD.textContent = personagem.atributos.destreza.modificador;
+  TituloD.textContent = "DEX";
 
-    if (campo.id === "constituição") {
-      const CaixaCon = document.createElement("div");
-      const QtdCon = document.createElement("p");
-      const Modificador = document.createElement("h2");
-      const Titulo = document.createElement("h4");
+  CaixaDex.appendChild(QtdDex);
+  CaixaDex.appendChild(ModificadorD);
+  CaixaDex.appendChild(TituloD);
+  divFicha.appendChild(CaixaDex);
 
-      CaixaCon.id = "caixaCon";
-      QtdCon.id = "qtdCon";
-      Modificador.id = "modCon";
-      Titulo.id = "titCon";
+  const CaixaCon = document.createElement("div");
+  const QtdCon = document.createElement("p");
+  const ModificadorCo = document.createElement("h2");
+  const TituloCo = document.createElement("h4");
 
-      QtdCon.textContent = campo.valueAsNumber;
-      Modificador.textContent = calculaModificador(campo.valueAsNumber);
-      Titulo.textContent = "CON";
+  CaixaCon.id = "caixaCon";
+  QtdCon.id = "qtdCon";
+  ModificadorCo.id = "modCon";
+  TituloCo.id = "titCon";
 
-      CaixaCon.appendChild(QtdCon);
-      CaixaCon.appendChild(Modificador);
-      CaixaCon.appendChild(Titulo);
-      divFicha.appendChild(CaixaCon);
-    }
+  QtdCon.textContent = personagem.atributos.constituição.valor;
+  ModificadorCo.textContent = personagem.atributos.constituição.modificador;
+  TituloCo.textContent = "CON";
 
-    if (campo.id === "inteligência") {
-      const CaixaInt = document.createElement("div");
-      const QtdInt = document.createElement("p");
-      const Modificador = document.createElement("h2");
-      const Titulo = document.createElement("h4");
+  CaixaCon.appendChild(QtdCon);
+  CaixaCon.appendChild(ModificadorCo);
+  CaixaCon.appendChild(TituloCo);
+  divFicha.appendChild(CaixaCon);
 
-      CaixaInt.id = "caixaInt";
-      QtdInt.id = "qtdInt";
-      Modificador.id = "modInt";
-      Titulo.id = "titInt";
+  const CaixaInt = document.createElement("div");
+  const QtdInt = document.createElement("p");
+  const ModificadorI = document.createElement("h2");
+  const TituloI = document.createElement("h4");
 
-      QtdInt.textContent = campo.valueAsNumber;
-      Modificador.textContent = calculaModificador(campo.valueAsNumber);
-      Titulo.textContent = "INT";
+  CaixaInt.id = "caixaInt";
+  QtdInt.id = "qtdInt";
+  ModificadorI.id = "modInt";
+  TituloI.id = "titInt";
 
-      CaixaInt.appendChild(QtdInt);
-      CaixaInt.appendChild(Modificador);
-      CaixaInt.appendChild(Titulo);
-      divFicha.appendChild(CaixaInt);
-    }
+  QtdInt.textContent = personagem.atributos.inteligência.valor;
+  ModificadorI.textContent = personagem.atributos.inteligência.modificador;
+  TituloI.textContent = "INT";
 
-    if (campo.id === "sabedoria") {
-      const CaixaSab = document.createElement("div");
-      const QtdSab = document.createElement("p");
-      const Modificador = document.createElement("h2");
-      const Titulo = document.createElement("h4");
+  CaixaInt.appendChild(QtdInt);
+  CaixaInt.appendChild(ModificadorI);
+  CaixaInt.appendChild(TituloI);
+  divFicha.appendChild(CaixaInt);
 
-      CaixaSab.id = "caixaSab";
-      QtdSab.id = "qtdSab";
-      Modificador.id = "modSab";
-      Titulo.id = "titSab";
+  const CaixaSab = document.createElement("div");
+  const QtdSab = document.createElement("p");
+  const ModificadorS = document.createElement("h2");
+  const TituloS = document.createElement("h4");
 
-      QtdSab.textContent = campo.valueAsNumber;
-      Modificador.textContent = calculaModificador(campo.valueAsNumber);
-      Titulo.textContent = "SAB";
+  CaixaSab.id = "caixaSab";
+  QtdSab.id = "qtdSab";
+  ModificadorS.id = "modSab";
+  TituloS.id = "titSab";
 
-      CaixaSab.appendChild(QtdSab);
-      CaixaSab.appendChild(Modificador);
-      CaixaSab.appendChild(Titulo);
-      divFicha.appendChild(CaixaSab);
-    }
+  QtdSab.textContent = personagem.atributos.sabedoria.valor;
+  ModificadorS.textContent = personagem.atributos.sabedoria.modificador;
+  TituloS.textContent = "SAB";
 
-    if (campo.id === "carisma") {
-      const CaixaCar = document.createElement("div");
-      const QtdCar = document.createElement("p");
-      const Modificador = document.createElement("h2");
-      const Titulo = document.createElement("h4");
+  CaixaSab.appendChild(QtdSab);
+  CaixaSab.appendChild(ModificadorS);
+  CaixaSab.appendChild(TituloS);
+  divFicha.appendChild(CaixaSab);
 
-      CaixaCar.id = "caixaCar";
-      QtdCar.id = "qtdCar";
-      Modificador.id = "modCar";
-      Titulo.id = "titCar";
+  const CaixaCar = document.createElement("div");
+  const QtdCar = document.createElement("p");
+  const ModificadorCa = document.createElement("h2");
+  const TituloCa = document.createElement("h4");
 
-      QtdCar.textContent = campo.valueAsNumber;
-      Modificador.textContent = calculaModificador(campo.valueAsNumber);
-      Titulo.textContent = "CHA";
+  CaixaCar.id = "caixaCar";
+  QtdCar.id = "qtdCar";
+  ModificadorCa.id = "modCar";
+  TituloCa.id = "titCar";
 
-      CaixaCar.appendChild(QtdCar);
-      CaixaCar.appendChild(Modificador);
-      CaixaCar.appendChild(Titulo);
-      divFicha.appendChild(CaixaCar);
-    }
-  }
+  QtdCar.textContent = personagem.atributos.carisma.valor;
+  ModificadorCa.textContent = personagem.atributos.carisma.modificador;
+  TituloCa.textContent = "CHA";
+
+  CaixaCar.appendChild(QtdCar);
+  CaixaCar.appendChild(ModificadorCa);
+  CaixaCar.appendChild(TituloCa);
+  divFicha.appendChild(CaixaCar);
 }
 
 const atributos = document.getElementsByClassName("atr");
