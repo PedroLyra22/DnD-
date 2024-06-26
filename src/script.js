@@ -80,119 +80,33 @@ function criarFicha(event) {
 
   //---------------------------ATRIBUTOS-------------------------------------
 
-  const CaixaFor = document.createElement("div");
-  const QtdFor = document.createElement("p");
-  const ModificadorF = document.createElement("h2");
-  const TituloF = document.createElement("h4");
+  function CriaCaixaAtr(atributo){
+    const Caixa = document.createElement("div");
+    const Titulo = document.createElement("h4");
+    const Modificador = document.createElement("h2");
+    const Qtd = document.createElement("p");
 
-  CaixaFor.id = "caixaFor";
-  QtdFor.id = "qtdFor";
-  ModificadorF.id = "modFor";
-  TituloF.id = "titFor";
+    Caixa.id = `caixa${atributo.toUpperCase()}`;
+    Titulo.id = `tit${atributo.toUpperCase()}`;
+    Modificador.id = `mod${atributo.toUpperCase()}`;
+    Qtd.id = `qtd${atributo.toUpperCase()}`;
 
-  QtdFor.textContent = personagem.atributos.força.valor;
-  ModificadorF.textContent = personagem.atributos.força.modificador;
-  TituloF.textContent = "FOR";
+    Titulo.textContent = atributo.slice(0,3).toUpperCase();
+    Modificador.textContent = personagem.atributos[atributo].modificador;
+    Qtd.textContent = personagem.atributos[atributo].valor;
 
-  CaixaFor.appendChild(QtdFor);
-  CaixaFor.appendChild(ModificadorF);
-  CaixaFor.appendChild(TituloF);
-  divFicha.appendChild(CaixaFor);
+    Caixa.appendChild(Titulo);
+    Caixa.appendChild(Modificador);
+    Caixa.appendChild(Qtd);
+    divFicha.appendChild(Caixa);
+  }
 
-  const CaixaDex = document.createElement("div");
-  const QtdDex = document.createElement("p");
-  const ModificadorD = document.createElement("h2");
-  const TituloD = document.createElement("h4");
-
-  CaixaDex.id = "caixaDex";
-  QtdDex.id = "qtdDex";
-  ModificadorD.id = "modDex";
-  TituloD.id = "titDex";
-
-  QtdDex.textContent = personagem.atributos.destreza.valor;
-  ModificadorD.textContent = personagem.atributos.destreza.modificador;
-  TituloD.textContent = "DEX";
-
-  CaixaDex.appendChild(QtdDex);
-  CaixaDex.appendChild(ModificadorD);
-  CaixaDex.appendChild(TituloD);
-  divFicha.appendChild(CaixaDex);
-
-  const CaixaCon = document.createElement("div");
-  const QtdCon = document.createElement("p");
-  const ModificadorCo = document.createElement("h2");
-  const TituloCo = document.createElement("h4");
-
-  CaixaCon.id = "caixaCon";
-  QtdCon.id = "qtdCon";
-  ModificadorCo.id = "modCon";
-  TituloCo.id = "titCon";
-
-  QtdCon.textContent = personagem.atributos.constituição.valor;
-  ModificadorCo.textContent = personagem.atributos.constituição.modificador;
-  TituloCo.textContent = "CON";
-
-  CaixaCon.appendChild(QtdCon);
-  CaixaCon.appendChild(ModificadorCo);
-  CaixaCon.appendChild(TituloCo);
-  divFicha.appendChild(CaixaCon);
-
-  const CaixaInt = document.createElement("div");
-  const QtdInt = document.createElement("p");
-  const ModificadorI = document.createElement("h2");
-  const TituloI = document.createElement("h4");
-
-  CaixaInt.id = "caixaInt";
-  QtdInt.id = "qtdInt";
-  ModificadorI.id = "modInt";
-  TituloI.id = "titInt";
-
-  QtdInt.textContent = personagem.atributos.inteligência.valor;
-  ModificadorI.textContent = personagem.atributos.inteligência.modificador;
-  TituloI.textContent = "INT";
-
-  CaixaInt.appendChild(QtdInt);
-  CaixaInt.appendChild(ModificadorI);
-  CaixaInt.appendChild(TituloI);
-  divFicha.appendChild(CaixaInt);
-
-  const CaixaSab = document.createElement("div");
-  const QtdSab = document.createElement("p");
-  const ModificadorS = document.createElement("h2");
-  const TituloS = document.createElement("h4");
-
-  CaixaSab.id = "caixaSab";
-  QtdSab.id = "qtdSab";
-  ModificadorS.id = "modSab";
-  TituloS.id = "titSab";
-
-  QtdSab.textContent = personagem.atributos.sabedoria.valor;
-  ModificadorS.textContent = personagem.atributos.sabedoria.modificador;
-  TituloS.textContent = "SAB";
-
-  CaixaSab.appendChild(QtdSab);
-  CaixaSab.appendChild(ModificadorS);
-  CaixaSab.appendChild(TituloS);
-  divFicha.appendChild(CaixaSab);
-
-  const CaixaCar = document.createElement("div");
-  const QtdCar = document.createElement("p");
-  const ModificadorCa = document.createElement("h2");
-  const TituloCa = document.createElement("h4");
-
-  CaixaCar.id = "caixaCar";
-  QtdCar.id = "qtdCar";
-  ModificadorCa.id = "modCar";
-  TituloCa.id = "titCar";
-
-  QtdCar.textContent = personagem.atributos.carisma.valor;
-  ModificadorCa.textContent = personagem.atributos.carisma.modificador;
-  TituloCa.textContent = "CHA";
-
-  CaixaCar.appendChild(QtdCar);
-  CaixaCar.appendChild(ModificadorCa);
-  CaixaCar.appendChild(TituloCa);
-  divFicha.appendChild(CaixaCar);
+  CriaCaixaAtr("força")
+  CriaCaixaAtr("destreza")
+  CriaCaixaAtr("constituição")
+  CriaCaixaAtr("inteligência")
+  CriaCaixaAtr("sabedoria")
+  CriaCaixaAtr("carisma")
 }
 
 const atributos = document.getElementsByClassName("atr");
