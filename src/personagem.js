@@ -1,3 +1,24 @@
+class Personagem {
+    
+    constructor(objPersonagem){
+        this.nome = objPersonagem.chaName;
+        this.jogador = objPersonagem.playName;
+        this.raça = objPersonagem.race;
+        this.classe = objPersonagem.chaClass;
+        this.antecedente = objPersonagem.background;
+        this.alinhamento = objPersonagem.allingment;
+
+        this.xp = objPersonagem.xp;
+        this.nivel = 1;
+
+    }
+
+    imprime(){
+        console.log(this);
+    }
+
+}
+
 function calculaNivel(xp){
     switch (true) {
         case(xp < 300):

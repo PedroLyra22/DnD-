@@ -2,6 +2,16 @@ var form = document.getElementById("formFicha")
 var divFicha = document.getElementById("ficha")
 var custo = document.getElementById("custo")
 
+const testando = true;
+if (testando){
+    form.chaName.value = "Valente"
+    form.playName.value = "Pedro"
+    form.race.value = "Tabaxi"
+    form.chaClass.value = "Ladino"
+    form.background.value = "Criminoso"
+    form.allingment.value = "Caótico e Bom"
+}
+
 function imprimeCustoAtributo(){
     const VatrF = document.getElementById("força").value
     const VatrD = document.getElementById("destreza").value
@@ -18,8 +28,18 @@ imprimeCustoAtributo();
 function criarFicha(event) {
     event.preventDefault();
     const campos = event.target;
+    const camposPersonagem = document.getElementsByClassName("campoPersonagem");
+    const objPersonagem = {};
+    
+for (let i=0; i< camposPersonagem.length; i++){
+    objPersonagem[camposPersonagem[i].id] = camposPersonagem[i].value;
+}
+
+const personagem = new Personagem(objPersonagem);
+personagem.imprime();
 
     for(campo of campos){
+        
 
         if(campo.id === "chaName"){           
             const NomePersonagem = document.createElement('h1');
@@ -39,7 +59,7 @@ function criarFicha(event) {
             divFicha.appendChild(Raca);
         }
 
-        if(campo.id === "class"){           
+        if(campo.id === "chaClass"){           
             const Classe = document.createElement('h3');
             Classe.textContent = `Classe: ${campo[campo.selectedIndex].value}`;
             divFicha.appendChild(Classe);
@@ -195,9 +215,6 @@ function criarFicha(event) {
             divFicha.appendChild(CaixaCar);
         }
     }
-
-
-    console.log(campos)
 }
 
 
