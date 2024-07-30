@@ -36,9 +36,11 @@ function criarFicha(event) {
   event.preventDefault();
   const campos = event.target;
   const camposPersonagem = document.getElementsByClassName("campoPersonagem");
-  const camposAtributo = document.getElementsByClassName("atr");
+  const camposAtributo = document.getElementsByClassName("campoAtributo");
+  const camposPericia = document.getElementsByClassName("campoPericia")
   const objPersonagem = {};
   const objAtributo = {};
+  const objPericia = {};
 
   for (let i = 0; i < camposPersonagem.length; i++) {
     objPersonagem[camposPersonagem[i].id] = camposPersonagem[i].value;
@@ -48,7 +50,14 @@ function criarFicha(event) {
     objAtributo[camposAtributo[i].id] = camposAtributo[i].value;
   }
 
-  const personagem = new Personagem(objPersonagem, objAtributo);
+  for (let i = 0; i < camposPericia.length; i++) {
+    objPericia[camposPericia[i].id] = {}
+    objPericia[camposPericia[i].id].proficiente = camposPericia[i].checked;
+    //console.log(objPericia);
+  }
+
+  const personagem = new Personagem(objPersonagem, objAtributo, objPericia);
+  console.log(personagem.pericias)
 
   const NomePersonagem = document.createElement("h1");
   NomePersonagem.textContent = `Nome do Personagem: ${personagem.nome}`;
@@ -112,15 +121,21 @@ function criarFicha(event) {
 //---------------------------BÔNUS DE PROFICIÊNCIA---------------------------------------------------------
   const bonusProficiencia = document.createElement("h3")
   bonusProficiencia.id = "bp"
-  bonusProficiencia.textContent = `Bônus de Proficiência: ${calculaBonusProficiencia(personagem.nivel)}`;
+  bonusProficiencia.textContent = `Bônus de Proficiência: ${personagem.bonusProficiencia}`;
   divFicha.appendChild(bonusProficiencia);
   
 }
 
 //----------------------------PERÍCIAS--------------------------
 
+  const pericias = document.getElementById("listaPerícias")
+  console.log(pericias)
 
-const atributos = document.getElementsByClassName("atr");
+
+
+
+
+const atributos = document.getElementsByClassName("campoAtributo");
 for (let i = 0; i < atributos.length; i++) {
   atributos[i].addEventListener("input", imprimeCustoAtributo);
 }

@@ -1,5 +1,5 @@
 class Personagem {
-  constructor(objPersonagem, objAtributo) {
+  constructor(objPersonagem, objAtributo, objPericias) {
     this.nome = objPersonagem.chaName;
     this.jogador = objPersonagem.playName;
     this.raça = objPersonagem.race;
@@ -7,6 +7,7 @@ class Personagem {
     this.antecedente = objPersonagem.background;
     this.alinhamento = objPersonagem.allingment;
     this.nivel = objPersonagem.nvl;
+    this.bonusProficiencia = calculaBonusProficiencia(this.nivel);
 
     this.atributos = {};
     this.atributos.força = {
@@ -33,11 +34,32 @@ class Personagem {
       valor: objAtributo.carisma,
       modificador: calculaModificador(objAtributo.carisma),
     };
-  }
 
+    //TO DO: Terminar de colocar as perícias dentro do construtor
+
+    this.pericias = {};
+    this.pericias.acrobacia = {
+      proficiente: objPericias.acrobacia.proficiente,
+      valor: this.atributos.destreza.modificador,
+    };
+    this.pericias.arcanismo = {
+      proficiente: objPericias.arcanismo.proficiente,
+      valor: this.atributos.inteligência.modificador
+    }
+
+  }
+  
   imprime() {
     console.log(this);
   }
+  
+  retornaPericia(nomePericia) {
+    if (this.pericias[nomePericia].proficiente){
+      return this.pericias[nomePericia].valor + this.bonusProficiencia
+    }
+    return this.pericias[nomePericia].valor
+  }
+
 }
 
 function calculaBonusProficiencia(nvl){
