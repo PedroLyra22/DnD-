@@ -5,8 +5,20 @@ const mapPxA = new Map([
   ["arcanismo", "inteligência"],
   ["atletismo", "força"],
   ["atuação", "carisma"],
-  ["blefar", "carisma"]
-
+  ["blefar", "carisma"],
+  ["furtividade", "destreza"],
+  ["história", "inteligência"],
+  ["intimidação", "carisma"],
+  ["intuição", "sabedoria"],
+  ["investigação", "inteligência"],
+  ["animais", "sabedoria"],
+  ["medicina", "sabedoria"],
+  ["natureza", "inteligência"],
+  ["percepção", "sabedoria"],
+  ["persuasão", "carisma"],
+  ["prestidigitação", "destreza"],
+  ["religião", "inteligência"],
+  ["sobrevivência", "sabedoria"],
 ]);
 
 function mapeiaPericias(atributo, pericia, map){
@@ -58,60 +70,6 @@ class Personagem {
     this.pericias = {};
     this.objPericias = objPericias
     mapPxA.forEach(mapeiaPericias, this)
-
-    this.pericias.furtividade = {
-      proficiente: objPericias.furtividade.proficiente,
-      valor: this.atributos.destreza.modificador
-    }
-    this.pericias.história = {
-      proficiente: objPericias.história.proficiente,
-      valor: this.atributos.inteligência.modificador
-    }
-    this.pericias.intimidação = {
-      proficiente: objPericias.intimidação.proficiente,
-      valor: this.atributos.carisma.modificador
-    }
-    this.pericias.intuição = {
-      proficiente: objPericias.intuição.proficiente,
-      valor: this.atributos.sabedoria.modificador,
-      atributo: "SAB"
-    }
-    this.pericias.investigação = {
-      proficiente: objPericias.investigação.proficiente,
-      valor: this.atributos.inteligência.modificador
-    }
-    this.pericias.animais = {
-      proficiente: objPericias.animais.proficiente,
-      valor: this.atributos.sabedoria.modificador
-    }
-    this.pericias.medicina = {
-      proficiente: objPericias.medicina.proficiente,
-      valor: this.atributos.sabedoria.modificador
-    }
-    this.pericias.natureza = {
-      proficiente: objPericias.natureza.proficiente,
-      valor: this.atributos.inteligência.modificador
-    }
-    this.pericias.percepção = {
-      proficiente: objPericias.percepção.proficiente,
-      valor: this.atributos.sabedoria.modificador
-    }
-    this.pericias.persuasão = {
-      proficiente: objPericias.persuasão.proficiente,
-      valor: this.atributos.carisma.modificador
-    }
-    this.pericias.prestidigitação = {
-      proficiente: objPericias.prestidigitação.proficiente,
-      valor: this.atributos.destreza.modificador
-    }
-    this.pericias.religião = {
-      proficiente: objPericias.religião.proficiente,
-      valor: this.atributos.inteligência.modificador
-    }
-    this.pericias.sobrevivência = {
-      proficiente: objPericias.sobrevivência.proficiente,
-      valor: this.atributos.sabedoria.modificador
-    }
 
   }
   
