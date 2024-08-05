@@ -1,4 +1,17 @@
-
+const mapAC = new Map([
+  ["acolchoada", 11],
+  ["couro", 11],
+  ["couro batido", 12],
+  ["gibão de peles", 12],
+  ["camisão de malha", 13],
+  ["brunea", 14],
+  ["peitoral", 14],
+  ["meia-armadura", 15],
+  ["cota de anéis", 14],
+  ["cota de malha", 16],
+  ["cota de talos", 17],
+  ["placas", 18],
+]);
 
 const mapPxA = new Map([
   ["acrobacia", "destreza"],
@@ -68,9 +81,8 @@ class Personagem {
     };
 
     this.pericias = {};
-    this.objPericias = objPericias
-    mapPxA.forEach(mapeiaPericias, this)
-
+    this.objPericias = objPericias;
+    mapPxA.forEach(mapeiaPericias, this);
   }
   
   imprime() {

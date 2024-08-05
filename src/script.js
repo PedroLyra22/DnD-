@@ -123,12 +123,12 @@ function criarFicha(event) {
   bonusProficiencia.textContent = `Bônus de Proficiência: ${personagem.bonusProficiencia}`;
   divFicha.appendChild(bonusProficiencia);
   
+//----------------------------PERÍCIAS---------------------------------------------------------------------
+    //const quadroPerícias = document.createElement("div")
+    
+
 }
 
-//----------------------------PERÍCIAS--------------------------
-
-  const pericias = document.getElementById("listaPerícias")
-  console.log(pericias)
 
 
 
