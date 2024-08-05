@@ -76,15 +76,6 @@ class Personagem {
   imprime() {
     console.log(this);
   }
-  
-
-  retornaPericia(nomePericia) {
-    if (this.pericias[nomePericia].proficiente){
-      return this.pericias[nomePericia].valor + this.bonusProficiencia
-    }
-    return this.pericias[nomePericia].valor
-  }
-
 }
 
 function calculaBonusProficiencia(nvl){
