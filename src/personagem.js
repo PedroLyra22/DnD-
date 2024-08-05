@@ -1,3 +1,23 @@
+
+
+const mapPxA = new Map([
+  ["acrobacia", "destreza"],
+  ["arcanismo", "inteligência"],
+  ["atletismo", "força"],
+  ["atuação", "carisma"],
+  ["blefar", "carisma"]
+
+]);
+
+function mapeiaPericias(atributo, pericia, map){
+  console.log(this.bonusProficiencia, this.atributos[atributo].modificador, this.objPericias[pericia].proficiente);
+  this.pericias[pericia] = {
+    proficiente: this.objPericias[pericia].proficiente,
+    valor: this.atributos[atributo].modificador + (this.objPericias[pericia].proficiente ? this.bonusProficiencia : 0),
+    atributo: atributo.slice(0,3).toUpperCase()
+  }
+}
+
 class Personagem {
   constructor(objPersonagem, objAtributo, objPericias) {
     this.nome = objPersonagem.chaName;
@@ -36,26 +56,9 @@ class Personagem {
     };
 
     this.pericias = {};
-    this.pericias.acrobacia = {
-      proficiente: objPericias.acrobacia.proficiente,
-      valor: this.atributos.destreza.modificador,
-    };
-    this.pericias.arcanismo = {
-      proficiente: objPericias.arcanismo.proficiente,
-      valor: this.atributos.inteligência.modificador
-    }
-    this.pericias.atletismo = {
-      proficiente: objPericias.atletismo.proficiente,
-      valor: this.atributos.força.modificador
-    }
-    this.pericias.atuação = {
-      proficiente: objPericias.atuação.proficiente,
-      valor: this.atributos.carisma.modificador
-    }
-    this.pericias.blefar = {
-      proficiente: objPericias.blefar.proficiente,
-      valor: this.atributos.carisma.modificador
-    }
+    this.objPericias = objPericias
+    mapPxA.forEach(mapeiaPericias, this)
+
     this.pericias.furtividade = {
       proficiente: objPericias.furtividade.proficiente,
       valor: this.atributos.destreza.modificador
@@ -70,7 +73,8 @@ class Personagem {
     }
     this.pericias.intuição = {
       proficiente: objPericias.intuição.proficiente,
-      valor: this.atributos.sabedoria.modificador
+      valor: this.atributos.sabedoria.modificador,
+      atributo: "SAB"
     }
     this.pericias.investigação = {
       proficiente: objPericias.investigação.proficiente,
@@ -115,6 +119,7 @@ class Personagem {
     console.log(this);
   }
   
+
   retornaPericia(nomePericia) {
     if (this.pericias[nomePericia].proficiente){
       return this.pericias[nomePericia].valor + this.bonusProficiencia

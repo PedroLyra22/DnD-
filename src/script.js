@@ -53,12 +53,11 @@ function criarFicha(event) {
   for (let i = 0; i < camposPericia.length; i++) {
     objPericia[camposPericia[i].id] = {}
     objPericia[camposPericia[i].id].proficiente = camposPericia[i].checked;
-    //console.log(objPericia);
   }
-
+  
   const personagem = new Personagem(objPersonagem, objAtributo, objPericia);
-  console.log(personagem.pericias)
-
+  console.log(personagem)
+  
   const NomePersonagem = document.createElement("h1");
   NomePersonagem.textContent = `Nome do Personagem: ${personagem.nome}`;
   divFicha.appendChild(NomePersonagem);
