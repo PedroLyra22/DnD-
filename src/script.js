@@ -57,7 +57,8 @@ function criarFicha(event) {
   
   const personagem = new Personagem(objPersonagem, objAtributo, objPericia);
   console.log(personagem)
-  
+
+//-----------------------------CABEÇALHO------------------------------------------------------------------------
   const NomePersonagem = document.createElement("h1");
   NomePersonagem.textContent = `Nome do Personagem: ${personagem.nome}`;
   divFicha.appendChild(NomePersonagem);
@@ -86,13 +87,13 @@ function criarFicha(event) {
   Nivel.textContent = `Nível: ${personagem.nivel}`;
   divFicha.appendChild(Nivel);
 
-  //---------------------------BÔNUS DE PROFICIÊNCIA---------------------------------------------------------
-    const bonusProficiencia = document.createElement("h3");
-    bonusProficiencia.id = "bp";
-    bonusProficiencia.textContent = `Bônus de Proficiência: ${personagem.bonusProficiencia}`;
-    divFicha.appendChild(bonusProficiencia);
+//---------------------------BÔNUS DE PROFICIÊNCIA---------------------------------------------------------
+    const BonusProficiencia = document.createElement("h3");
+    BonusProficiencia.id = "bp";
+    BonusProficiencia.textContent = `Bônus de Proficiência: ${personagem.BonusProficiencia}`;
+    divFicha.appendChild(BonusProficiencia);
   
-  //---------------------------ATRIBUTOS-------------------------------------
+//---------------------------ATRIBUTOS-------------------------------------
 
   function CriaCaixaAtr(atributo){
     const Caixa = document.createElement("div");
@@ -123,25 +124,53 @@ function criarFicha(event) {
   CriaCaixaAtr("carisma")
   
 //----------------------------PERÍCIAS---------------------------------------------------------------------
-  const quadroPerícias = document.createElement("ul") //TO DO: Retirar a bolinha no CSS
+  const QuadroPericias = document.createElement("ul") //TO DO: Retirar a bolinha no CSS
   for (pericia in personagem.pericias){
-    const liQuadroP = document.createElement("li");
-    const labelQuadroP = document.createElement("label");
-    labelQuadroP.textContent = `${pericia} = ${personagem.pericias[pericia].valor}`; //TO DO: Colocar em maiúsculo no CSS
-    const inputQuadroP = document.createElement("input");
-    inputQuadroP.type = "checkbox";
-    inputQuadroP.checked = personagem.pericias[pericia].proficiente;
-    inputQuadroP.disabled = true;
+    const LiQuadroP = document.createElement("li");
+    const LabelQuadroP = document.createElement("label");
+    const InputQuadroP = document.createElement("input");
+    
+    LabelQuadroP.textContent = `${pericia} = ${personagem.pericias[pericia].valor}`; //TO DO: Colocar em maiúsculo no CSS
+    InputQuadroP.type = "checkbox";
+    InputQuadroP.checked = personagem.pericias[pericia].proficiente;
+    InputQuadroP.disabled = true;
 
-    liQuadroP.appendChild(inputQuadroP)
-    liQuadroP.appendChild(labelQuadroP);
-    quadroPerícias.appendChild(liQuadroP);
+    LiQuadroP.appendChild(InputQuadroP)
+    LiQuadroP.appendChild(LabelQuadroP);
+    QuadroPericias.appendChild(LiQuadroP);
   } 
-  divFicha.appendChild(quadroPerícias);
+  divFicha.appendChild(QuadroPericias);
+
+//---------------------------PERCEPÇÂO / INTUIÇÃO PASSIVA----------------------------------------------------------------
+  const PercepçaoP = document.createElement("h5");
+  PercepçaoP.textContent = `Percepção Passiva: ${personagem.percepçãoPassiva.valor}`;
+
+  const IntuiçaoP = document.createElement("h5");
+  IntuiçaoP.textContent = `Intuição Passiva: ${personagem.intuiçãoPassiva.valor}`;
+
+  divFicha.appendChild(PercepçaoP);
+  divFicha.appendChild(IntuiçaoP);
+
+//-----------------------------INICIATIVA-------------------------------------------------------------------------
+  const CaixaIniciativa = document.createElement("div");
+  const ValorIniciativa = document.createElement("h3");
+  const TituloIniciativa = document.createElement("h5");
+
+  ValorIniciativa.textContent = personagem.iniciativa.valor;
+  TituloIniciativa.textContent = "INICIATIVA"
+
+  CaixaIniciativa.appendChild(TituloIniciativa);
+  CaixaIniciativa.appendChild(ValorIniciativa);
+  divFicha.appendChild(CaixaIniciativa);
+
+//-------------------------------------------------------------------------------
+
+
+
+
 }
 
-//TO DO: Criar intuição e percepção passivas no PERSONAGEM.JS
-// if (pericia == "intuição"){console.log("funciona!"+ pericia)}
+
 
 const atributos = document.getElementsByClassName("campoAtributo");
 for (let i = 0; i < atributos.length; i++) {
