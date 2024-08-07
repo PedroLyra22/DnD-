@@ -1,27 +1,59 @@
-//TO DO: Terminar de parametrizar as armaduras
 const mapAC = new Map([
   //Armaduras Leves (+DEX na AC)
   ["acolchoada", {
     AC: (modDES) => modDES + 11,
+    Penalidade: true
+  }],
+  ["couro", {
+    AC: (modDES) =>modDES + 11,
     Penalidade: false
   }],
-  ["couro", 11],
-  ["couro batido", 12], //Desvantagem
+  ["couro batido", {
+    AC: (modDES) => modDES + 12,
+    Penalidade: false
+  }],
   //Armaduras Médias (+2 de DEX na AC)
   ["gibão de peles", {
     AC: ((modDES) => Math.min(modDES, 2) + 12),
     Penalidade: false
   }],
-  ["camisão de malha", 13], 
-  ["brunea", 14], //Desvantagem
-  ["armadura de espinhos", 14], //Desvantagem
-  ["peitoral", 14],
-  ["meia-armadura", 15], //Desvantagem
-  //Armaduras Pesadas
-  ["cota de anéis", 14],
-  ["cota de malha", 16],
-  ["cota de talos", 17],
-  ["placas", 18],
+  ["camisão de malha", {
+    AC: ((modDES) => Math.min(modDES, 2) + 13),
+    Penalidade: false
+  }], 
+  ["brunea", {
+    AC: ((modDES) => Math.min(modDES, 2) + 14),
+    Penalidade: true
+  }],
+  ["espinhos", {
+    AC: ((modDES) => Math.min(modDES, 2) + 14),
+    Penalidade: true
+  }],
+  ["peitoral", {
+    AC: ((modDES) => Math.min(modDES, 2) + 14),
+    Penalidade: false
+  }],
+  ["meia-armadura", {
+    AC: ((modDES) => Math.min(modDES, 2) + 15),
+    Penalidade: true
+  }],
+  //Armaduras Pesadas (Possuem requisitos de força)
+  ["cota de anéis", {
+    AC: 14,
+    Penalidade: true
+  }],
+  ["cota de malha", {
+    AC: 16,
+    Penalidade: true
+  }],
+  ["cota de talos", {
+    AC: 17,
+    Penalidade: true
+  }],
+  ["placas", {
+    AC: 18,
+    Penalidade: true
+  }],
 ]);
 
 const mapPxA = new Map([
