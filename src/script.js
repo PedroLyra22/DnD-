@@ -77,15 +77,21 @@ function criarFicha(event) {
   const Antecedente = document.createElement("h3");
   Antecedente.textContent = `Antecedente: ${personagem.antecedente}`;
   divFicha.appendChild(Antecedente);
-
+  
   const Alinhamento = document.createElement("h3");
   Alinhamento.textContent = `Alinhamento: ${personagem.alinhamento}`;
   divFicha.appendChild(Alinhamento);
-
+  
   const Nivel = document.createElement("h3");
   Nivel.textContent = `Nível: ${personagem.nivel}`;
   divFicha.appendChild(Nivel);
 
+  //---------------------------BÔNUS DE PROFICIÊNCIA---------------------------------------------------------
+    const bonusProficiencia = document.createElement("h3");
+    bonusProficiencia.id = "bp";
+    bonusProficiencia.textContent = `Bônus de Proficiência: ${personagem.bonusProficiencia}`;
+    divFicha.appendChild(bonusProficiencia);
+  
   //---------------------------ATRIBUTOS-------------------------------------
 
   function CriaCaixaAtr(atributo){
@@ -115,24 +121,27 @@ function criarFicha(event) {
   CriaCaixaAtr("inteligência")
   CriaCaixaAtr("sabedoria")
   CriaCaixaAtr("carisma")
-
-
-//---------------------------BÔNUS DE PROFICIÊNCIA---------------------------------------------------------
-  const bonusProficiencia = document.createElement("h3")
-  bonusProficiencia.id = "bp"
-  bonusProficiencia.textContent = `Bônus de Proficiência: ${personagem.bonusProficiencia}`;
-  divFicha.appendChild(bonusProficiencia);
   
 //----------------------------PERÍCIAS---------------------------------------------------------------------
-    //const quadroPerícias = document.createElement("div")
-    
+  const quadroPerícias = document.createElement("ul") //TO DO: Retirar a bolinha no CSS
+  for (pericia in personagem.pericias){
+    const liQuadroP = document.createElement("li");
+    const labelQuadroP = document.createElement("label");
+    labelQuadroP.textContent = `${pericia} = ${personagem.pericias[pericia].valor}`; //TO DO: Colocar em maiúsculo no CSS
+    const inputQuadroP = document.createElement("input");
+    inputQuadroP.type = "checkbox";
+    inputQuadroP.checked = personagem.pericias[pericia].proficiente;
+    inputQuadroP.disabled = true;
 
+    liQuadroP.appendChild(inputQuadroP)
+    liQuadroP.appendChild(labelQuadroP);
+    quadroPerícias.appendChild(liQuadroP);
+  } 
+  divFicha.appendChild(quadroPerícias);
 }
 
-
-
-
-
+//TO DO: Criar intuição e percepção passivas no PERSONAGEM.JS
+// if (pericia == "intuição"){console.log("funciona!"+ pericia)}
 
 const atributos = document.getElementsByClassName("campoAtributo");
 for (let i = 0; i < atributos.length; i++) {

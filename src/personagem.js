@@ -46,7 +46,6 @@ const mapPxA = new Map([
 ]);
 
 function mapeiaPericias(atributo, pericia, map){
-  console.log(this.bonusProficiencia, this.atributos[atributo].modificador, this.objPericias[pericia].proficiente);
   this.pericias[pericia] = {
     proficiente: this.objPericias[pericia].proficiente,
     valor: this.atributos[atributo].modificador + (this.objPericias[pericia].proficiente ? this.bonusProficiencia : 0),
@@ -94,6 +93,7 @@ class Personagem {
     this.pericias = {};
     this.objPericias = objPericias;
     mapPxA.forEach(mapeiaPericias, this);
+    delete this.objPericias;
   }
   
   imprime() {
