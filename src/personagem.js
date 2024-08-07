@@ -1,12 +1,23 @@
+//TO DO: Terminar de parametrizar as armaduras
 const mapAC = new Map([
-  ["acolchoada", 11],
+  //Armaduras Leves (+DEX na AC)
+  ["acolchoada", {
+    AC: (modDES) => modDES + 11,
+    Penalidade: false
+  }],
   ["couro", 11],
-  ["couro batido", 12],
-  ["gibão de peles", 12],
-  ["camisão de malha", 13],
-  ["brunea", 14],
+  ["couro batido", 12], //Desvantagem
+  //Armaduras Médias (+2 de DEX na AC)
+  ["gibão de peles", {
+    AC: ((modDES) => Math.min(modDES, 2) + 12),
+    Penalidade: false
+  }],
+  ["camisão de malha", 13], 
+  ["brunea", 14], //Desvantagem
+  ["armadura de espinhos", 14], //Desvantagem
   ["peitoral", 14],
-  ["meia-armadura", 15],
+  ["meia-armadura", 15], //Desvantagem
+  //Armaduras Pesadas
   ["cota de anéis", 14],
   ["cota de malha", 16],
   ["cota de talos", 17],
