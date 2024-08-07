@@ -130,7 +130,7 @@ function criarFicha(event) {
     const LabelQuadroP = document.createElement("label");
     const InputQuadroP = document.createElement("input");
     
-    LabelQuadroP.textContent = `${pericia} = ${personagem.pericias[pericia].valor}`; //TO DO: Colocar em maiúsculo no CSS
+    LabelQuadroP.textContent = `${pericia} = ${personagem.pericias[pericia].valor} (${personagem.pericias[pericia].atributo})`; //TO DO: Colocar em maiúsculo no CSS
     InputQuadroP.type = "checkbox";
     InputQuadroP.checked = personagem.pericias[pericia].proficiente;
     InputQuadroP.disabled = true;
