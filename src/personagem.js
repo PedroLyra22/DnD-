@@ -35,7 +35,7 @@ const mapPxA = new Map([
   ["intimidação", "carisma"],
   ["intuição", "sabedoria"],
   ["investigação", "inteligência"],
-  ["animais", "sabedoria"],
+  ["lidar com animais", "sabedoria"],
   ["medicina", "sabedoria"],
   ["natureza", "inteligência"],
   ["percepção", "sabedoria"],
@@ -94,6 +94,18 @@ class Personagem {
     this.objPericias = objPericias;
     mapPxA.forEach(mapeiaPericias, this);
     delete this.objPericias;
+
+    this.iniciativa = {
+      valor: this.atributos.destreza.modificador
+    }
+
+    this.percepçãoPassiva = {
+      valor: this.pericias.percepção.valor + 10
+    }
+
+    this.intuiçãoPassiva = {
+      valor: this.pericias.intuição.valor + 10
+    }
   }
   
   imprime() {
