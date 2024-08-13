@@ -151,7 +151,7 @@ function criarFicha(event) {
   divFicha.appendChild(PercepçaoP);
   divFicha.appendChild(IntuiçaoP);
 
-//-----------------------------INICIATIVA-------------------------------------------------------------------------
+//------------------------------INICIATIVA-------------------------------------------------------------------------
   const CaixaIniciativa = document.createElement("div");
   const ValorIniciativa = document.createElement("h3");
   const TituloIniciativa = document.createElement("h5");
@@ -163,9 +163,28 @@ function criarFicha(event) {
   CaixaIniciativa.appendChild(ValorIniciativa);
   divFicha.appendChild(CaixaIniciativa);
 
-//-------------------------------------------------------------------------------
+//------------------------------SALVAGUARDAS-------------------------------------------------------------------
+  const QuadroSalvaguardas = document.createElement("ul");
+  const TituloSalvaguarda = document.createElement("h5");
+  for (salvaguarda in personagem.salvaguardas){
+    const LiQuadroS = document.createElement("li");
+    const LabelQuadroS = document.createElement("label");
+    const InputQuadroS = document.createElement("input");
+    
+    LabelQuadroS.textContent = `${salvaguarda.slice(0,3).toUpperCase()} = ${personagem.salvaguardas[salvaguarda].valor}`; //TO DO: Colocar em maiúsculo no CSS
+    InputQuadroS.type = "checkbox";
+    InputQuadroS.checked = personagem.salvaguardas[salvaguarda].proficiente;
+    InputQuadroS.disabled = true;
+    TituloSalvaguarda.textContent = "SALVAGUARDAS";
 
+    LiQuadroS.appendChild(InputQuadroS)
+    LiQuadroS.appendChild(LabelQuadroS);
+    QuadroSalvaguardas.appendChild(LiQuadroS);
+  } 
+  divFicha.appendChild(TituloSalvaguarda);
+  divFicha.appendChild(QuadroSalvaguardas);
 
+//---------------------------------------------------------------------------------------------------------
 
 
 }
