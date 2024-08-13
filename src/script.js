@@ -7,7 +7,7 @@ if (testando) {
   form.chaName.value = "Valente";
   form.playName.value = "Pedro";
   form.race.value = "Tabaxi";
-  form.chaClass.value = "Ladino";
+  form.chaClass.value = "Artífice";
   form.background.value = "Criminoso";
   form.allingment.value = "Caótico e Bom";
   form.nvl.value = "3";
@@ -90,7 +90,7 @@ function criarFicha(event) {
 //---------------------------BÔNUS DE PROFICIÊNCIA---------------------------------------------------------
     const BonusProficiencia = document.createElement("h3");
     BonusProficiencia.id = "bp";
-    BonusProficiencia.textContent = `Bônus de Proficiência: ${personagem.BonusProficiencia}`;
+    BonusProficiencia.textContent = `Bônus de Proficiência: ${personagem.bonusProficiencia}`;
     divFicha.appendChild(BonusProficiencia);
   
 //---------------------------ATRIBUTOS-------------------------------------

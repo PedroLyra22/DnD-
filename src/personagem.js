@@ -85,6 +85,13 @@ function mapeiaPericias(atributo, pericia, map){
   }
 }
 
+const mapClassSave = new Map([
+  ["Artífice", ["inteligência", "constituição"]],
+  ["Bárbaro", ["força", "constituição"]],
+  ["Bardo", ["carisma", "destreza"]],
+])
+
+
 class Personagem {
   constructor(objPersonagem, objAtributo, objPericias) {
     this.nome = objPersonagem.chaName;
@@ -138,11 +145,26 @@ class Personagem {
     this.intuiçãoPassiva = {
       valor: this.pericias.intuição.valor + 10
     }
+
+    this.salvaguardas = {}
+    this.mapeiaSalvaguardas()
   }
   
   imprime() {
     console.log(this);
   }
+
+  mapeiaSalvaguardas(){
+    const atributosP = mapClassSave.get(this.classe);
+    Object.keys(this.atributos).forEach( nomeAtributo => {
+      this.salvaguardas[nomeAtributo] = {
+        valor: this.atributos[nomeAtributo].modificador + (atributosP.includes(nomeAtributo)? this.bonusProficiencia : 0),
+        proficiente: atributosP.includes(nomeAtributo),
+      }
+    });   
+  }
+
+
 }
 
 function calculaBonusProficiencia(nvl){
