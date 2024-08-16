@@ -85,12 +85,21 @@ function mapeiaPericias(atributo, pericia, map){
   }
 }
 
-const mapClassSave = new Map([
-  ["Artífice", ["inteligência", "constituição"]],
-  ["Bárbaro", ["força", "constituição"]],
-  ["Bardo", ["carisma", "destreza"]],
+//TO DO: Alimentar o map com o restantes das classes
+const mapClass = new Map([
+  ["Artífice", {
+    save: ["inteligência", "constituição"],
+    hitDice: 8,
+  }],
+  ["Bárbaro",{
+    save: ["força", "constituição"],
+    hitDice: 12,
+  }],
+  ["Bardo", {
+    save: ["carisma", "destreza"],
+    hitDice: 8,
+  }],
 ])
-
 
 class Personagem {
   constructor(objPersonagem, objAtributo, objPericias) {
@@ -155,7 +164,7 @@ class Personagem {
   }
 
   mapeiaSalvaguardas(){
-    const atributosP = mapClassSave.get(this.classe);
+    const atributosP = mapClass.get(this.classe).save;
     Object.keys(this.atributos).forEach( nomeAtributo => {
       this.salvaguardas[nomeAtributo] = {
         valor: this.atributos[nomeAtributo].modificador + (atributosP.includes(nomeAtributo)? this.bonusProficiencia : 0),
