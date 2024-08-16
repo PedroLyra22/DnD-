@@ -184,8 +184,11 @@ function criarFicha(event) {
   divFicha.appendChild(TituloSalvaguarda);
   divFicha.appendChild(QuadroSalvaguardas);
 
-//---------------------------------------------------------------------------------------------------------
-
+//-------------------------------DADOS DE VIDA-----------------------------------------------------
+  const escolhaV = document.getElementById("roll")
+  personagem.mapeiaVida(escolhaV.checked);
+  console.log(personagem);
+  
 
 }
 

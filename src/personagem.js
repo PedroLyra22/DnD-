@@ -102,7 +102,7 @@ const mapClass = new Map([
 ])
 
 class Personagem {
-  constructor(objPersonagem, objAtributo, objPericias) {
+  constructor(objPersonagem, objAtributo, objPericias, escolhaV) {
     this.nome = objPersonagem.chaName;
     this.jogador = objPersonagem.playName;
     this.raça = objPersonagem.race;
@@ -157,6 +157,9 @@ class Personagem {
 
     this.salvaguardas = {}
     this.mapeiaSalvaguardas()
+
+    //this.vida = this.mapeiaVida();
+    
   }
   
   imprime() {
@@ -173,9 +176,45 @@ class Personagem {
     });   
   }
 
+  mapeiaVida(escolhaV){//TO DO: Resolver comportamento inesperado...
+    const valorDadoVida = mapClass.get(this.classe).hitDice;
+    let vidaTemp = valorDadoVida + this.atributos.constituição.modificador;
+    //console.log(rolaDados(valorDadoVida, this.nvl - 1).reduce((acumulador, atual) => acumulador + atual, vidaTemp));
+    if (escolhaV === true){//caso onde são rolado os dados
+      this.vida = ((this.nvl - 1) * this.atributos.constituição.modificador) +
+       rolaDados(valorDadoVida, this.nvl - 1).reduce((acumulador, atual) => acumulador + atual, vidaTemp);
+    }else{
+      this.vida = vidaTemp + (this.nvl - 1) * (mediaDadoVida(valorDadoVida) + this.atributos.constituição.modificador);
+    }
+  }
+
 
 }
 
+function rolaDados(quandidadeDeLados, quantidadeDeDados = 1){
+  return Array.from({ length: quantidadeDeDados},
+      () => Math.ceil(Math.random() * quandidadeDeLados))
+}
+
+function mediaDadoVida(dado){
+  switch(true){
+    case dado === 6:
+      return 4;
+      break;
+    case dado === 8:
+      return 5;
+      break;
+    case dado === 10:
+      return 6;
+      break;
+    case dado === 12:
+      return 7;
+      break;
+    default:
+      throw new Error("Dado de vida não compatível");
+      break;
+  }
+}
 function calculaBonusProficiencia(nvl){
   switch(true){
     case nvl < 5:
