@@ -109,7 +109,7 @@ class Personagem {
     this.classe = objPersonagem.chaClass;
     this.antecedente = objPersonagem.background;
     this.alinhamento = objPersonagem.allingment;
-    this.nivel = objPersonagem.nvl;
+    this.nivel = Number(objPersonagem.nvl);
     this.bonusProficiencia = calculaBonusProficiencia(this.nivel);
 
     this.atributos = {};
@@ -158,7 +158,8 @@ class Personagem {
     this.salvaguardas = {}
     this.mapeiaSalvaguardas()
 
-    //this.vida = this.mapeiaVida();
+    //this.vida = this.mapeiaVida(); colocar parâmetro do mapeia vida...
+    this.dados = {};
     
   }
   
@@ -176,15 +177,16 @@ class Personagem {
     });   
   }
 
-  mapeiaVida(escolhaV){//TO DO: Resolver comportamento inesperado...
+  mapeiaVida(escolhaV){
     const valorDadoVida = mapClass.get(this.classe).hitDice;
-    let vidaTemp = valorDadoVida + this.atributos.constituição.modificador;
-    //console.log(rolaDados(valorDadoVida, this.nvl - 1).reduce((acumulador, atual) => acumulador + atual, vidaTemp));
+    let vidaNvl1 = valorDadoVida + this.atributos.constituição.modificador;
     if (escolhaV === true){//caso onde são rolado os dados
-      this.vida = ((this.nvl - 1) * this.atributos.constituição.modificador) +
-       rolaDados(valorDadoVida, this.nvl - 1).reduce((acumulador, atual) => acumulador + atual, vidaTemp);
+      const resultado = rolaDados(valorDadoVida, this.nivel - 1);
+      this.dados.vida = resultado;
+      this.vida = ((this.nivel - 1) * this.atributos.constituição.modificador) +
+       resultado.reduce((acumulador, atual) => acumulador + atual, vidaNvl1);
     }else{
-      this.vida = vidaTemp + (this.nvl - 1) * (mediaDadoVida(valorDadoVida) + this.atributos.constituição.modificador);
+      this.vida = vidaNvl1 + (this.nivel - 1) * (mediaDadoVida(valorDadoVida) + this.atributos.constituição.modificador);
     }
   }
 

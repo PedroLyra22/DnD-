@@ -56,7 +56,6 @@ function criarFicha(event) {
   }
   
   const personagem = new Personagem(objPersonagem, objAtributo, objPericia);
-  console.log(personagem)
 
 //-----------------------------CABEÇALHO------------------------------------------------------------------------
   const NomePersonagem = document.createElement("h1");
@@ -187,9 +186,9 @@ function criarFicha(event) {
 //-------------------------------DADOS DE VIDA-----------------------------------------------------
   const escolhaV = document.getElementById("roll")
   personagem.mapeiaVida(escolhaV.checked);
-  console.log(personagem);
   
-
+  
+  console.log(personagem);
 }
 
 
