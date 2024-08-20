@@ -183,6 +183,10 @@ class Personagem {
     if (escolhaV === true){//caso onde são rolado os dados
       const resultado = rolaDados(valorDadoVida, this.nivel - 1);
       this.dados.vida = resultado;
+      this.dados.descanso = {
+        valor: valorDadoVida,
+        quantidade: this.nivel,
+      };
       this.vida = ((this.nivel - 1) * this.atributos.constituição.modificador) +
        resultado.reduce((acumulador, atual) => acumulador + atual, vidaNvl1);
     }else{
