@@ -85,7 +85,6 @@ function mapeiaPericias(atributo, pericia, map){
   }
 }
 
-//TO DO: Alimentar o map com o restantes das classes
 const mapClass = new Map([
   ["Artífice", {
     save: ["inteligência", "constituição"],
@@ -98,6 +97,46 @@ const mapClass = new Map([
   ["Bardo", {
     save: ["carisma", "destreza"],
     hitDice: 8,
+  }],
+  ["Bruxo", {
+    save: ["carisma", "sabedoria"],
+    hitDice: 8,
+  }],
+  ["Caçador", {
+    save: ["destreza", "força"],
+    hitDice: 10,
+  }],
+  ["Clérigo", {
+    save: ["sabedoria", "carisma"],
+    hitDice: 8,
+  }],
+  ["Druida", {
+    save: ["sabedoria", "inteligência"],
+    hitDice: 8,
+  }],
+  ["Feiticeiro", {
+    save: ["carisma", "constituição"],
+    hitDice: 6,
+  }],
+  ["Ladino", {
+    save: ["destreza", "inteligência"],
+    hitDice: 8,
+  }],
+  ["Lutador", {
+    save: ["força", "constituição"],
+    hitDice: 10,
+  }],
+  ["Mago", {
+    save: ["inteligência", "sabedoria"],
+    hitDice: 6,
+  }],
+  ["Monge", {
+    save: ["destreza", "força"],
+    hitDice: 8,
+  }],
+  ["Paladino", {
+    save: ["carisma", "sabedoria"],
+    hitDice: 10,
   }],
 ])
 
@@ -183,7 +222,7 @@ class Personagem {
     if (escolhaV === true){//caso onde são rolado os dados
       const resultado = rolaDados(valorDadoVida, this.nivel - 1);
       this.dados.vida = resultado;
-      this.dados.descanso = {
+      this.dados.descanso = {//caso onde usa a média
         valor: valorDadoVida,
         quantidade: this.nivel,
       };
