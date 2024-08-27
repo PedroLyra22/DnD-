@@ -184,12 +184,36 @@ function criarFicha(event) {
   divFicha.appendChild(QuadroSalvaguardas);
 
 //-------------------------------DADOS DE VIDA-----------------------------------------------------
-  const escolhaV = document.getElementById("roll")
-  personagem.mapeiaVida(escolhaV.checked);
   
   
   console.log(personagem);
 }
+
+const escolhaV = document.getElementById("roll");
+  
+  const BotãoRolar = document.getElementById("botão de rolagem");
+  console.log(BotãoRolar);
+  BotãoRolar.onclick = () => {
+    //personagem.mapeiaVida(escolhaV.checked);
+    const CaixaVida = document.createElement("fieldset");
+    
+    const resultado = rolaDados(8, document.getElementById("nvl").value - 1);
+    for (dado of resultado) {
+      const dadoInput = document.createElement("input");
+      dadoInput.value = dado;
+      CaixaVida.appendChild(dadoInput);
+
+    }
+    const VidaTítulo = document.createElement("h5");
+    const VidaTotal = document.createElement("h3");
+    
+    VidaTítulo.textContent = "VIDA"
+    VidaTotal.textContent = resultado[0];
+  
+    CaixaVida.appendChild(VidaTítulo);
+    CaixaVida.appendChild(VidaTotal);
+    form.appendChild(CaixaVida);
+  }
 
 
 

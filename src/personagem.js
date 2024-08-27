@@ -197,7 +197,7 @@ class Personagem {
     this.salvaguardas = {}
     this.mapeiaSalvaguardas()
 
-    //this.vida = this.mapeiaVida(); colocar parâmetro do mapeia vida...
+    this.vida = {};
     this.dados = {};
     
   }
@@ -234,11 +234,6 @@ class Personagem {
   }
 
 
-}
-
-function rolaDados(quandidadeDeLados, quantidadeDeDados = 1){
-  return Array.from({ length: quantidadeDeDados},
-      () => Math.ceil(Math.random() * quandidadeDeLados))
 }
 
 function mediaDadoVida(dado){
