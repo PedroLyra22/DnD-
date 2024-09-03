@@ -1,59 +1,98 @@
 const mapAC = new Map([
   //Armaduras Leves (+DEX na AC)
-  ["acolchoada", {
-    AC: (modDES) => modDES + 11,
-    Penalidade: true
-  }],
-  ["couro", {
-    AC: (modDES) =>modDES + 11,
-    Penalidade: false
-  }],
-  ["couro batido", {
-    AC: (modDES) => modDES + 12,
-    Penalidade: false
-  }],
+  [
+    "acolchoada",
+    {
+      AC: (modDES) => modDES + 11,
+      Penalidade: true,
+    },
+  ],
+  [
+    "couro",
+    {
+      AC: (modDES) => modDES + 11,
+      Penalidade: false,
+    },
+  ],
+  [
+    "couro batido",
+    {
+      AC: (modDES) => modDES + 12,
+      Penalidade: false,
+    },
+  ],
   //Armaduras Médias (+2 de DEX na AC)
-  ["gibão de peles", {
-    AC: ((modDES) => Math.min(modDES, 2) + 12),
-    Penalidade: false
-  }],
-  ["camisão de malha", {
-    AC: ((modDES) => Math.min(modDES, 2) + 13),
-    Penalidade: false
-  }], 
-  ["brunea", {
-    AC: ((modDES) => Math.min(modDES, 2) + 14),
-    Penalidade: true
-  }],
-  ["espinhos", {
-    AC: ((modDES) => Math.min(modDES, 2) + 14),
-    Penalidade: true
-  }],
-  ["peitoral", {
-    AC: ((modDES) => Math.min(modDES, 2) + 14),
-    Penalidade: false
-  }],
-  ["meia-armadura", {
-    AC: ((modDES) => Math.min(modDES, 2) + 15),
-    Penalidade: true
-  }],
+  [
+    "gibão de peles",
+    {
+      AC: (modDES) => Math.min(modDES, 2) + 12,
+      Penalidade: false,
+    },
+  ],
+  [
+    "camisão de malha",
+    {
+      AC: (modDES) => Math.min(modDES, 2) + 13,
+      Penalidade: false,
+    },
+  ],
+  [
+    "brunea",
+    {
+      AC: (modDES) => Math.min(modDES, 2) + 14,
+      Penalidade: true,
+    },
+  ],
+  [
+    "espinhos",
+    {
+      AC: (modDES) => Math.min(modDES, 2) + 14,
+      Penalidade: true,
+    },
+  ],
+  [
+    "peitoral",
+    {
+      AC: (modDES) => Math.min(modDES, 2) + 14,
+      Penalidade: false,
+    },
+  ],
+  [
+    "meia-armadura",
+    {
+      AC: (modDES) => Math.min(modDES, 2) + 15,
+      Penalidade: true,
+    },
+  ],
   //Armaduras Pesadas (Possuem requisitos de força)
-  ["cota de anéis", {
-    AC: 14,
-    Penalidade: true
-  }],
-  ["cota de malha", {
-    AC: 16,
-    Penalidade: true
-  }],
-  ["cota de talos", {
-    AC: 17,
-    Penalidade: true
-  }],
-  ["placas", {
-    AC: 18,
-    Penalidade: true
-  }],
+  [
+    "cota de anéis",
+    {
+      AC: 14,
+      Penalidade: true,
+    },
+  ],
+  [
+    "cota de malha",
+    {
+      AC: 16,
+      Penalidade: true,
+    },
+  ],
+  [
+    "cota de talos",
+    {
+      AC: 17,
+      Penalidade: true,
+    },
+  ],
+  [
+    "placas",
+    {
+      AC: 18,
+      Penalidade: true,
+    },
+  ],
 ]);
 
 const mapPxA = new Map([
@@ -77,68 +116,109 @@ const mapPxA = new Map([
   ["sobrevivência", "sabedoria"],
 ]);
 
-function mapeiaPericias(atributo, pericia, map){
+function mapeiaPericias(atributo, pericia, map) {
   this.pericias[pericia] = {
     proficiente: this.objPericias[pericia].proficiente,
-    valor: this.atributos[atributo].modificador + (this.objPericias[pericia].proficiente ? this.bonusProficiencia : 0),
-    atributo: atributo.slice(0,3).toUpperCase()
-  }
+    valor:
+      this.atributos[atributo].modificador +
+      (this.objPericias[pericia].proficiente ? this.bonusProficiencia : 0),
+    atributo: atributo.slice(0, 3).toUpperCase(),
+  };
 }
 
 const mapClass = new Map([
-  ["Artífice", {
-    save: ["inteligência", "constituição"],
-    hitDice: 8,
-  }],
-  ["Bárbaro",{
-    save: ["força", "constituição"],
-    hitDice: 12,
-  }],
-  ["Bardo", {
-    save: ["carisma", "destreza"],
-    hitDice: 8,
-  }],
-  ["Bruxo", {
-    save: ["carisma", "sabedoria"],
-    hitDice: 8,
-  }],
-  ["Caçador", {
-    save: ["destreza", "força"],
-    hitDice: 10,
-  }],
-  ["Clérigo", {
-    save: ["sabedoria", "carisma"],
-    hitDice: 8,
-  }],
-  ["Druida", {
-    save: ["sabedoria", "inteligência"],
-    hitDice: 8,
-  }],
-  ["Feiticeiro", {
-    save: ["carisma", "constituição"],
-    hitDice: 6,
-  }],
-  ["Ladino", {
-    save: ["destreza", "inteligência"],
-    hitDice: 8,
-  }],
-  ["Lutador", {
-    save: ["força", "constituição"],
-    hitDice: 10,
-  }],
-  ["Mago", {
-    save: ["inteligência", "sabedoria"],
-    hitDice: 6,
-  }],
-  ["Monge", {
-    save: ["destreza", "força"],
-    hitDice: 8,
-  }],
-  ["Paladino", {
-    save: ["carisma", "sabedoria"],
-    hitDice: 10,
-  }],
-])
+  [
+    "Artífice",
+    {
+      save: ["inteligência", "constituição"],
+      hitDice: 8,
+    },
+  ],
+  [
+    "Bárbaro",
+    {
+      save: ["força", "constituição"],
+      hitDice: 12,
+    },
+  ],
+  [
+    "Bardo",
+    {
+      save: ["carisma", "destreza"],
+      hitDice: 8,
+    },
+  ],
+  [
+    "Bruxo",
+    {
+      save: ["carisma", "sabedoria"],
+      hitDice: 8,
+    },
+  ],
+  [
+    "Caçador",
+    {
+      save: ["destreza", "força"],
+      hitDice: 10,
+    },
+  ],
+  [
+    "Clérigo",
+    {
+      save: ["sabedoria", "carisma"],
+      hitDice: 8,
+    },
+  ],
+  [
+    "Druida",
+    {
+      save: ["sabedoria", "inteligência"],
+      hitDice: 8,
+    },
+  ],
+  [
+    "Feiticeiro",
+    {
+      save: ["carisma", "constituição"],
+      hitDice: 6,
+    },
+  ],
+  [
+    "Ladino",
+    {
+      save: ["destreza", "inteligência"],
+      hitDice: 8,
+    },
+  ],
+  [
+    "Lutador",
+    {
+      save: ["força", "constituição"],
+      hitDice: 10,
+    },
+  ],
+  [
+    "Mago",
+    {
+      save: ["inteligência", "sabedoria"],
+      hitDice: 6,
+    },
+  ],
+  [
+    "Monge",
+    {
+      save: ["destreza", "força"],
+      hitDice: 8,
+    },
+  ],
+  [
+    "Paladino",
+    {
+      save: ["carisma", "sabedoria"],
+      hitDice: 10,
+    },
+  ],
+]);
 
 class Personagem {
   constructor(objPersonagem, objAtributo, objPericias, escolhaV) {
@@ -183,61 +263,55 @@ class Personagem {
     delete this.objPericias;
 
     this.iniciativa = {
-      valor: this.atributos.destreza.modificador
-    }
+      valor: this.atributos.destreza.modificador,
+    };
 
     this.percepçãoPassiva = {
-      valor: this.pericias.percepção.valor + 10
-    }
+      valor: this.pericias.percepção.valor + 10,
+    };
 
     this.intuiçãoPassiva = {
-      valor: this.pericias.intuição.valor + 10
-    }
+      valor: this.pericias.intuição.valor + 10,
+    };
 
-    this.salvaguardas = {}
-    this.mapeiaSalvaguardas()
+    this.salvaguardas = {};
+    this.mapeiaSalvaguardas();
 
     this.vida = {};
     this.dados = {};
-    
   }
-  
+
   imprime() {
     console.log(this);
   }
 
-  mapeiaSalvaguardas(){
+  mapeiaSalvaguardas() {
     const atributosP = mapClass.get(this.classe).save;
-    Object.keys(this.atributos).forEach( nomeAtributo => {
+    Object.keys(this.atributos).forEach((nomeAtributo) => {
       this.salvaguardas[nomeAtributo] = {
-        valor: this.atributos[nomeAtributo].modificador + (atributosP.includes(nomeAtributo)? this.bonusProficiencia : 0),
+        valor:
+          this.atributos[nomeAtributo].modificador +
+          (atributosP.includes(nomeAtributo) ? this.bonusProficiencia : 0),
         proficiente: atributosP.includes(nomeAtributo),
-      }
-    });   
+      };
+    });
   }
 
-  mapeiaVida(escolhaV){
+  mapeiaVida(somaDados) { //TO DO: Voltar com o if else da escolha entre rolar dados ou pegar media
+    console.log(somaDados);
     const valorDadoVida = mapClass.get(this.classe).hitDice;
     let vidaNvl1 = valorDadoVida + this.atributos.constituição.modificador;
-    if (escolhaV === true){//caso onde são rolado os dados
-      const resultado = rolaDados(valorDadoVida, this.nivel - 1);
-      this.dados.vida = resultado;
-      this.dados.descanso = {//caso onde usa a média
-        valor: valorDadoVida,
-        quantidade: this.nivel,
-      };
-      this.vida = ((this.nivel - 1) * this.atributos.constituição.modificador) +
-       resultado.reduce((acumulador, atual) => acumulador + atual, vidaNvl1);
-    }else{
-      this.vida = vidaNvl1 + (this.nivel - 1) * (mediaDadoVida(valorDadoVida) + this.atributos.constituição.modificador);
+    this.dados.descanso = {
+      valor: valorDadoVida,
+      quantidade: this.nivel,
+    };
+    this.vida =
+      (this.nivel - 1) * this.atributos.constituição.modificador + somaDados + vidaNvl1;
     }
-  }
-
-
 }
 
-function mediaDadoVida(dado){
-  switch(true){
+function mediaDadoVida(dado) {
+  switch (true) {
     case dado === 6:
       return 4;
       break;
@@ -255,8 +329,8 @@ function mediaDadoVida(dado){
       break;
   }
 }
-function calculaBonusProficiencia(nvl){
-  switch(true){
+function calculaBonusProficiencia(nvl) {
+  switch (true) {
     case nvl < 5:
       return 2;
       break;

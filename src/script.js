@@ -37,7 +37,7 @@ function criarFicha(event) {
   const campos = event.target;
   const camposPersonagem = document.getElementsByClassName("campoPersonagem");
   const camposAtributo = document.getElementsByClassName("campoAtributo");
-  const camposPericia = document.getElementsByClassName("campoPericia")
+  const camposPericia = document.getElementsByClassName("campoPericia");
   const objPersonagem = {};
   const objAtributo = {};
   const objPericia = {};
@@ -51,13 +51,13 @@ function criarFicha(event) {
   }
 
   for (let i = 0; i < camposPericia.length; i++) {
-    objPericia[camposPericia[i].id] = {}
+    objPericia[camposPericia[i].id] = {};
     objPericia[camposPericia[i].id].proficiente = camposPericia[i].checked;
   }
-  
+
   const personagem = new Personagem(objPersonagem, objAtributo, objPericia);
 
-//-----------------------------CABEÇALHO------------------------------------------------------------------------
+  //-----------------------------CABEÇALHO------------------------------------------------------------------------
   const NomePersonagem = document.createElement("h1");
   NomePersonagem.textContent = `Nome do Personagem: ${personagem.nome}`;
   divFicha.appendChild(NomePersonagem);
@@ -77,24 +77,24 @@ function criarFicha(event) {
   const Antecedente = document.createElement("h3");
   Antecedente.textContent = `Antecedente: ${personagem.antecedente}`;
   divFicha.appendChild(Antecedente);
-  
+
   const Alinhamento = document.createElement("h3");
   Alinhamento.textContent = `Alinhamento: ${personagem.alinhamento}`;
   divFicha.appendChild(Alinhamento);
-  
+
   const Nivel = document.createElement("h3");
   Nivel.textContent = `Nível: ${personagem.nivel}`;
   divFicha.appendChild(Nivel);
 
-//---------------------------BÔNUS DE PROFICIÊNCIA---------------------------------------------------------
-    const BonusProficiencia = document.createElement("h3");
-    BonusProficiencia.id = "bp";
-    BonusProficiencia.textContent = `Bônus de Proficiência: ${personagem.bonusProficiencia}`;
-    divFicha.appendChild(BonusProficiencia);
-  
-//---------------------------ATRIBUTOS-------------------------------------
+  //---------------------------BÔNUS DE PROFICIÊNCIA---------------------------------------------------------
+  const BonusProficiencia = document.createElement("h3");
+  BonusProficiencia.id = "bp";
+  BonusProficiencia.textContent = `Bônus de Proficiência: ${personagem.bonusProficiencia}`;
+  divFicha.appendChild(BonusProficiencia);
 
-  function CriaCaixaAtr(atributo){
+  //---------------------------ATRIBUTOS-------------------------------------
+
+  function CriaCaixaAtr(atributo) {
     const Caixa = document.createElement("div");
     const Titulo = document.createElement("h4");
     const Modificador = document.createElement("h2");
@@ -105,7 +105,7 @@ function criarFicha(event) {
     Modificador.id = `mod${atributo.toUpperCase()}`;
     Qtd.id = `qtd${atributo.toUpperCase()}`;
 
-    Titulo.textContent = atributo.slice(0,3).toUpperCase();
+    Titulo.textContent = atributo.slice(0, 3).toUpperCase();
     Modificador.textContent = personagem.atributos[atributo].modificador;
     Qtd.textContent = personagem.atributos[atributo].valor;
 
@@ -115,32 +115,32 @@ function criarFicha(event) {
     divFicha.appendChild(Caixa);
   }
 
-  CriaCaixaAtr("força")
-  CriaCaixaAtr("destreza")
-  CriaCaixaAtr("constituição")
-  CriaCaixaAtr("inteligência")
-  CriaCaixaAtr("sabedoria")
-  CriaCaixaAtr("carisma")
-  
-//----------------------------PERÍCIAS---------------------------------------------------------------------
-  const QuadroPericias = document.createElement("ul") //TO DO: Retirar a bolinha no CSS
-  for (pericia in personagem.pericias){
+  CriaCaixaAtr("força");
+  CriaCaixaAtr("destreza");
+  CriaCaixaAtr("constituição");
+  CriaCaixaAtr("inteligência");
+  CriaCaixaAtr("sabedoria");
+  CriaCaixaAtr("carisma");
+
+  //----------------------------PERÍCIAS---------------------------------------------------------------------
+  const QuadroPericias = document.createElement("ul"); //TO DO: Retirar a bolinha no CSS
+  for (pericia in personagem.pericias) {
     const LiQuadroP = document.createElement("li");
     const LabelQuadroP = document.createElement("label");
     const InputQuadroP = document.createElement("input");
-    
+
     LabelQuadroP.textContent = `${pericia} = ${personagem.pericias[pericia].valor} (${personagem.pericias[pericia].atributo})`; //TO DO: Colocar em maiúsculo no CSS
     InputQuadroP.type = "checkbox";
     InputQuadroP.checked = personagem.pericias[pericia].proficiente;
     InputQuadroP.disabled = true;
 
-    LiQuadroP.appendChild(InputQuadroP)
+    LiQuadroP.appendChild(InputQuadroP);
     LiQuadroP.appendChild(LabelQuadroP);
     QuadroPericias.appendChild(LiQuadroP);
-  } 
+  }
   divFicha.appendChild(QuadroPericias);
 
-//---------------------------PERCEPÇÂO / INTUIÇÃO PASSIVA----------------------------------------------------------------
+  //---------------------------PERCEPÇÂO / INTUIÇÃO PASSIVA----------------------------------------------------------------
   const PercepçaoP = document.createElement("h5");
   PercepçaoP.textContent = `Percepção Passiva: ${personagem.percepçãoPassiva.valor}`;
 
@@ -150,72 +150,85 @@ function criarFicha(event) {
   divFicha.appendChild(PercepçaoP);
   divFicha.appendChild(IntuiçaoP);
 
-//------------------------------INICIATIVA-------------------------------------------------------------------------
+  //------------------------------INICIATIVA-------------------------------------------------------------------------
   const CaixaIniciativa = document.createElement("div");
   const ValorIniciativa = document.createElement("h3");
   const TituloIniciativa = document.createElement("h5");
 
   ValorIniciativa.textContent = personagem.iniciativa.valor;
-  TituloIniciativa.textContent = "INICIATIVA"
+  TituloIniciativa.textContent = "INICIATIVA";
 
   CaixaIniciativa.appendChild(TituloIniciativa);
   CaixaIniciativa.appendChild(ValorIniciativa);
   divFicha.appendChild(CaixaIniciativa);
 
-//------------------------------SALVAGUARDAS-------------------------------------------------------------------
+  //------------------------------SALVAGUARDAS-------------------------------------------------------------------
   const QuadroSalvaguardas = document.createElement("ul");
   const TituloSalvaguarda = document.createElement("h5");
-  for (salvaguarda in personagem.salvaguardas){
+  for (salvaguarda in personagem.salvaguardas) {
     const LiQuadroS = document.createElement("li");
     const LabelQuadroS = document.createElement("label");
     const InputQuadroS = document.createElement("input");
-    
-    LabelQuadroS.textContent = `${salvaguarda.slice(0,3).toUpperCase()} = ${personagem.salvaguardas[salvaguarda].valor}`; //TO DO: Colocar em maiúsculo no CSS
+
+    LabelQuadroS.textContent = `${salvaguarda.slice(0, 3).toUpperCase()} = ${
+      personagem.salvaguardas[salvaguarda].valor
+    }`; //TO DO: Colocar em maiúsculo no CSS
     InputQuadroS.type = "checkbox";
     InputQuadroS.checked = personagem.salvaguardas[salvaguarda].proficiente;
     InputQuadroS.disabled = true;
     TituloSalvaguarda.textContent = "SALVAGUARDAS";
 
-    LiQuadroS.appendChild(InputQuadroS)
+    LiQuadroS.appendChild(InputQuadroS);
     LiQuadroS.appendChild(LabelQuadroS);
     QuadroSalvaguardas.appendChild(LiQuadroS);
-  } 
+  }
   divFicha.appendChild(TituloSalvaguarda);
   divFicha.appendChild(QuadroSalvaguardas);
+  
+  //-------------------------------DADOS DE VIDA-----------------------------------------------------
+  const inputDadosVida = document.getElementsByClassName("dadosVida");
+  let dadoSoma = 0;
+  for(let i = 0; i < inputDadosVida.length; i++){
+    //console.log(inputDadosVida[i].value);
+    dadoSoma += Number(inputDadosVida[i].value);
+  }
+  personagem.mapeiaVida(dadoSoma);
 
-//-------------------------------DADOS DE VIDA-----------------------------------------------------
+  const CaixaVida = document.createElement("div");
+  CaixaVida.innerHTML = `<h5>VIDA</h5>
+                         <h3>${personagem.vida}</h3>`;
   
-  
+  divFicha.appendChild(CaixaVida);
+
+
   console.log(personagem);
 }
 
 const escolhaV = document.getElementById("roll");
-  
-  const BotãoRolar = document.getElementById("botão de rolagem");
-  console.log(BotãoRolar);
-  BotãoRolar.onclick = () => {
-    //personagem.mapeiaVida(escolhaV.checked);
-    const CaixaVida = document.createElement("fieldset");
-    
-    const resultado = rolaDados(8, document.getElementById("nvl").value - 1);
-    for (dado of resultado) {
-      const dadoInput = document.createElement("input");
-      dadoInput.value = dado;
-      CaixaVida.appendChild(dadoInput);
 
-    }
-    const VidaTítulo = document.createElement("h5");
-    const VidaTotal = document.createElement("h3");
-    
-    VidaTítulo.textContent = "VIDA"
-    VidaTotal.textContent = resultado[0];
-  
-    CaixaVida.appendChild(VidaTítulo);
-    CaixaVida.appendChild(VidaTotal);
-    form.appendChild(CaixaVida);
+const BotãoRolar = document.getElementById("botão de rolagem");
+console.log(BotãoRolar);
+BotãoRolar.onclick = () => {
+  const temp = document.getElementById("caixaVida");
+  if (temp){
+    temp.remove();
   }
-
-
+  const CaixaRolaDadosVida = document.createElement("fieldset");
+  CaixaRolaDadosVida.id = "caixaVida"
+  //TO DO: Criar label para mostrar o nivel de cada dado rolado
+  //dentro do for apendar o input na label e a label na caixaVida
+  const classe = document.getElementById("chaClass").value
+  const resultado = rolaDados(mapClass.get(classe).hitDice, document.getElementById("nvl").value - 1);
+  let i = 1;
+  for (dado of resultado) {
+    const dadoInput = document.createElement("input");
+    dadoInput.value = dado; 
+    dadoInput.classList.add("dadosVida");
+    CaixaRolaDadosVida.appendChild(dadoInput);
+    i++
+  }
+  form.appendChild(CaixaRolaDadosVida);
+};
 
 const atributos = document.getElementsByClassName("campoAtributo");
 for (let i = 0; i < atributos.length; i++) {
