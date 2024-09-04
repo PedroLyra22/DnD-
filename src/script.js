@@ -214,17 +214,20 @@ BotãoRolar.onclick = () => {
     temp.remove();
   }
   const CaixaRolaDadosVida = document.createElement("fieldset");
-  CaixaRolaDadosVida.id = "caixaVida"
-  //TO DO: Criar label para mostrar o nivel de cada dado rolado
-  //dentro do for apendar o input na label e a label na caixaVida
-  const classe = document.getElementById("chaClass").value
+  CaixaRolaDadosVida.id = "caixaVida";
+  const classe = document.getElementById("chaClass").value;
   const resultado = rolaDados(mapClass.get(classe).hitDice, document.getElementById("nvl").value - 1);
-  let i = 1;
+  let i = 2;
   for (dado of resultado) {
-    const dadoInput = document.createElement("input");
-    dadoInput.value = dado; 
-    dadoInput.classList.add("dadosVida");
-    CaixaRolaDadosVida.appendChild(dadoInput);
+    const DadoInput = document.createElement("input");
+    const LabelVida = document.createElement("label");
+
+    DadoInput.value = dado; 
+    DadoInput.classList.add("dadosVida");
+    LabelVida.textContent = ` Nível ${i}: `;
+
+    LabelVida.appendChild(DadoInput);
+    CaixaRolaDadosVida.appendChild(LabelVida);
     i++
   }
   form.appendChild(CaixaRolaDadosVida);
