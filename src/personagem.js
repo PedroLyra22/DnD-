@@ -297,17 +297,19 @@ class Personagem {
     });
   }
 
-  mapeiaVida(somaDados) { //TO DO: Voltar com o if else da escolha entre rolar dados ou pegar media
-    console.log(somaDados);
+  mapeiaVida(somaDados, escolhaV) { 
     const valorDadoVida = mapClass.get(this.classe).hitDice;
     let vidaNvl1 = valorDadoVida + this.atributos.constituição.modificador;
     this.dados.descanso = {
       valor: valorDadoVida,
       quantidade: this.nivel,
     };
-    this.vida =
-      (this.nivel - 1) * this.atributos.constituição.modificador + somaDados + vidaNvl1;
+    if (escolhaV === true){
+      this.vida = (this.nivel - 1) * this.atributos.constituição.modificador + somaDados + vidaNvl1;
+    } else {
+      this.vida = vidaNvl1 + (this.nivel - 1) * (mediaDadoVida(valorDadoVida) + this.atributos.constituição.modificador);
     }
+  }
 }
 
 function mediaDadoVida(dado) {

@@ -189,10 +189,9 @@ function criarFicha(event) {
   const inputDadosVida = document.getElementsByClassName("dadosVida");
   let dadoSoma = 0;
   for(let i = 0; i < inputDadosVida.length; i++){
-    //console.log(inputDadosVida[i].value);
     dadoSoma += Number(inputDadosVida[i].value);
   }
-  personagem.mapeiaVida(dadoSoma);
+  personagem.mapeiaVida(dadoSoma, escolhaV.checked);
 
   const CaixaVida = document.createElement("div");
   CaixaVida.innerHTML = `<h5>VIDA</h5>
