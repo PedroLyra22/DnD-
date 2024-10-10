@@ -199,15 +199,24 @@ function criarFicha(event) {
   
   divFicha.appendChild(CaixaVida);
 
+//--------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
 
   console.log(personagem);
 }
 
-const escolhaV = document.getElementById("roll");
 
-const BotãoRolar = document.getElementById("botão de rolagem");
-console.log(BotãoRolar);
-BotãoRolar.onclick = () => {
+const escolhaV = document.getElementById("roll");
+const BotaoRolar = document.getElementById("botão de rolagem");
+
+BotaoRolar.onclick = () => {
+  document.getElementById("formSubmit").disabled = false;
+  BotaoRolar.clicked = true;
+  
   const temp = document.getElementById("caixaVida");
   if (temp){
     temp.remove();
@@ -215,22 +224,43 @@ BotãoRolar.onclick = () => {
   const CaixaRolaDadosVida = document.createElement("fieldset");
   CaixaRolaDadosVida.id = "caixaVida";
   const classe = document.getElementById("chaClass").value;
-  const resultado = rolaDados(mapClass.get(classe).hitDice, document.getElementById("nvl").value - 1);
-  let i = 2;
+
+  let resultado = 0;
+  do{
+    resultado = rolaDados(mapClass.get(classe).hitDice, document.getElementById("nvl").value - 1);
+  } while(resultado.includes(1));
+
+  let nvl = 2;
   for (dado of resultado) {
     const DadoInput = document.createElement("input");
     const LabelVida = document.createElement("label");
 
     DadoInput.value = dado; 
+    DadoInput.disabled = true;
     DadoInput.classList.add("dadosVida");
-    LabelVida.textContent = ` Nível ${i}: `;
+    LabelVida.textContent = ` Nível ${nvl}: `;
 
     LabelVida.appendChild(DadoInput);
     CaixaRolaDadosVida.appendChild(LabelVida);
-    i++
+    nvl++
   }
   form.appendChild(CaixaRolaDadosVida);
 };
+
+const OpcaoRolarVida = document.getElementById("roll");
+const OpcaoMediaVida = document.getElementById("average");
+
+OpcaoRolarVida.onclick = () => {
+  if(BotaoRolar.clicked != true){
+    document.getElementById("formSubmit").disabled = true;
+  }
+}
+
+OpcaoMediaVida.onclick = () => {
+  document.getElementById("formSubmit").disabled = false;
+}
+
+
 
 const atributos = document.getElementsByClassName("campoAtributo");
 for (let i = 0; i < atributos.length; i++) {
