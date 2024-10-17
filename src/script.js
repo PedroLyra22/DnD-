@@ -215,6 +215,23 @@ divFicha.appendChild(CaixaDadoDescanso);
   console.log(personagem);
 }
 
+const SelecaoClasse = document.getElementById("chaClass");
+SelecaoClasse.addEventListener("change", (event) => {
+  const opcaoEscolhida = event.target[event.target.selectedIndex].value;
+  const opcoesDePericia = mapClass.get(opcaoEscolhida).proficiencias;
+
+  for (pericia of opcoesDePericia) {
+    const elementoPericia = document.getElementById(pericia);
+    elementoPericia.disabled = false;
+  }
+  console.log(opcoesDePericia);
+})
+
+
+
+
+
+
 
 const escolhaV = document.getElementById("roll");
 const BotaoRolar = document.getElementById("botão de rolagem");

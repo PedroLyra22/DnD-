@@ -132,6 +132,9 @@ const mapClass = new Map([
     {
       save: ["inteligência", "constituição"],
       hitDice: 8,
+      proficiencias: ["arcanismo", "história", 
+        "investigação", "medicina", "natureza", 
+        "percepção", "prestidigitação"],
     },
   ],
   [
@@ -139,6 +142,8 @@ const mapClass = new Map([
     {
       save: ["força", "constituição"],
       hitDice: 12,
+      proficiencias: ["lidar com animais", "atletismo", 
+        "intimidação", "natureza", "percepção", "sobrevivência"],
     },
   ],
   [
