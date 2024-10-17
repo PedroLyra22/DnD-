@@ -199,8 +199,14 @@ function criarFicha(event) {
   
   divFicha.appendChild(CaixaVida);
 
-//--------------------------------------------------------------------------------------------------------------------
+//--------------------------------DADO DE DESCANSO------------------------------------------------------------------------------------
+const CaixaDadoDescanso = document.createElement("div");
+CaixaDadoDescanso.innerHTML = `<h6>DADO DE VIDA</h6>
+                               <h7>${personagem.nivel} x d${personagem.dados.descanso.valor}</h7>`;
 
+divFicha.appendChild(CaixaDadoDescanso);
+
+//-------------------------------------------------------------------------------------------------------
 
 
 
