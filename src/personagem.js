@@ -151,6 +151,10 @@ const mapClass = new Map([
     {
       save: ["carisma", "destreza"],
       hitDice: 8,
+      proficiencias: ["arcanismo", "história", 
+        "investigação", "medicina", "natureza", 
+        "percepção", "prestidigitação", "lidar com animais", "atletismo", 
+        "intimidação", "natureza", "percepção", "sobrevivência"],
     },
   ],
   [
