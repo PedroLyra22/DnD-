@@ -28,20 +28,19 @@
             <label>Linhagem:
               <select required id="race" class="campoPersonagem">
                 <option value="" disabled selected>Selecione sua Linhagem</option>
-                <option>Anão(Colina)</option>
-                <option>Anão(Montanha)</option>
+                <option>Anão</option>
                 <option>Draconato</option>
-                <option>Elfo(Altaneiro)</option>
-                <option>Elfo(Floresta)</option>
-                <option>Elfo(Drow)</option>
-                <option>Gnomo(Floresta)</option>
-                <option>Gnomo(Rocha)</option>
-                <option>Halfling(Pés Leves)</option>
-                <option>Halfling(Robusto)</option>
+                <option>Elfo Altaneiro</option>
+                <option>Elfo da Floresta</option>
+                <option>Drow</option>
+                <option>Gnomo da Floresta</option>
+                <option>Gnomoda da Rocha</option>
+                <option>Halfling</option>
                 <option>Humano</option>
-                <option>Meio-Elfo</option>
-                <option>Meio-Orc</option>
-                <option>Tiefling</option>     
+                <option>Orc</option>
+                <option>Tiefling Abissal</option> 
+                <option>Tiefling Chtônico</option> 
+                <option>Tiefling Infernal</option> 
                 <option>Aasimar</option>
                 <option>Golias</option>
               </select>
@@ -146,8 +145,8 @@
               <input id="carisma" class="campoAtributo" type="number" value="8" min="8" max="15" step="1">
             </label>
           </li>      
-          <h5>Custo Total: <p id="custo"></p></h5>
         </ul>
+        <h5>Custo Total: <p id="custoAtr"></p></h5>
       </fieldset>
       <fieldset>
         <ul> 
@@ -242,6 +241,7 @@
             </label>
           </li>
         </ul>
+        <h5>Proficiências Atribuídas: <p id="custoPericias">0/2</p></h5>
       </fieldset>
         <div>
           <ul>

@@ -144,6 +144,9 @@ const mapClass = new Map([
       hitDice: 12,
       proficiencias: ["lidar com animais", "atletismo", 
         "intimidação", "natureza", "percepção", "sobrevivência"],
+      armas: ["arma simples", "arma marcial"],
+      armaduras: ["armadura leve", "armadura média", "escudo"],
+      ferramentas: [],
     },
   ],
   [
@@ -288,6 +291,10 @@ class Personagem {
 
     this.vida = {};
     this.dados = {};
+
+    this.armas = mapClass.get(this.classe).armas;
+    this.armaduras = mapClass.get(this.classe).armaduras;
+    this.ferramentas = mapClass.get(this.classe).ferramentas;
   }
 
   imprime() {

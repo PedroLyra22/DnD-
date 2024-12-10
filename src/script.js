@@ -1,6 +1,6 @@
 var form = document.getElementById("formFicha");
 var divFicha = document.getElementById("ficha");
-var custo = document.getElementById("custo");
+var custoAtr = document.getElementById("custoAtr");
 
 const testando = true;
 if (testando) {
@@ -20,7 +20,7 @@ function imprimeCustoAtributo() {
   const VatrI = document.getElementById("inteligência").value;
   const VatrS = document.getElementById("sabedoria").value;
   const VatrCa = document.getElementById("carisma").value;
-  custo.textContent = `${somaCustosAtribustos(
+  custoAtr.textContent = `${somaCustosAtribustos(
     VatrF,
     VatrD,
     VatrCo,
@@ -92,7 +92,7 @@ function criarFicha(event) {
   BonusProficiencia.textContent = `Bônus de Proficiência: ${personagem.bonusProficiencia}`;
   divFicha.appendChild(BonusProficiencia);
 
-  //---------------------------ATRIBUTOS-------------------------------------
+  //---------------------------ATRIBUTOS--------------------------------------------------------------------
 
   function CriaCaixaAtr(atributo) {
     const Caixa = document.createElement("div");
@@ -206,26 +206,93 @@ CaixaDadoDescanso.innerHTML = `<h6>DADO DE VIDA</h6>
 
 divFicha.appendChild(CaixaDadoDescanso);
 
-//-------------------------------------------------------------------------------------------------------
+//--------------------------------PROFICIÊNCIAS------------------------------------------------------
+function arrayParaString(arr){
+  if (arr.length > 0){
+    let ArrayTemp = arr.slice();
+    let StringTemp = ArrayTemp[0];
+    ArrayTemp.shift();
+    ArrayTemp.forEach(elemento => { 
+      StringTemp = StringTemp.concat(', ', elemento);
+    });
+    return StringTemp;
+  }
+    return " -";
+}
+
+const CaixaProficiencias = document.createElement("div");
+CaixaProficiencias.innerHTML = `<h5>PROFICIÊNCIAS:</h5>
+                                <h6>Armas:${arrayParaString(personagem.armas)}</h6>
+                                <h6><b>Armaduras:${arrayParaString(personagem.armaduras)}</h6>
+                                <h6>Ferramentas:${arrayParaString(personagem.ferramentas)}</h6>
+                                <h6>Idiomas:${arrayParaString(personagem.armas)}</h6>`
+
+divFicha.appendChild(CaixaProficiencias);
 
 
 
 
+
+//-------------------------------------------------------------------------------------------------
 
   console.log(personagem);
 }
 
-const SelecaoClasse = document.getElementById("chaClass");
-SelecaoClasse.addEventListener("change", (event) => {
-  const opcaoEscolhida = event.target[event.target.selectedIndex].value;
+//-----------------Controle das perícias-------------------------------------------------------
+
+const conjuntoElementosPericia = document.getElementsByClassName("campoPericia");
+
+function desabilitaPericias(){
+  for (pericia of conjuntoElementosPericia) {
+    pericia.disabled = true;
+  }
+}
+
+function habilitaPericias(){
+  desabilitaPericias();
+
+  const opcaoEscolhida = document.getElementById("chaClass").value;
   const opcoesDePericia = mapClass.get(opcaoEscolhida).proficiencias;
 
   for (pericia of opcoesDePericia) {
     const elementoPericia = document.getElementById(pericia);
     elementoPericia.disabled = false;
   }
-  console.log(opcoesDePericia);
+}
+
+//Perícias habilitadas pela classe
+const SelecaoClasse = document.getElementById("chaClass");
+SelecaoClasse.addEventListener("change", (event) => {
+  habilitaPericias();
 })
+
+//Contador de proficiência
+for (pericia of conjuntoElementosPericia){
+  pericia.addEventListener("change", (event) => {
+    let qtdMarcados = 0;
+    for (pericia of conjuntoElementosPericia) {
+      //console.log(pericia);
+      if (pericia.checked === true){
+        qtdMarcados++;
+      }
+      if(qtdMarcados === 2){
+        desabilitaPericias();
+      }else{
+        habilitaPericias();
+      }
+    }
+    for (pericia of conjuntoElementosPericia){
+      if(pericia.checked){
+        pericia.disabled = false;
+      }
+    }
+    
+    const ContadorProficiencia = document.getElementById("custoPericias");
+    ContadorProficiencia.textContent = `${qtdMarcados}/2`;
+  }) 
+}
+
+
 
 
 
